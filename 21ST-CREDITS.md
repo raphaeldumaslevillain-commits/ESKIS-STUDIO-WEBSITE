@@ -1,12 +1,18 @@
-# 21st.dev — composants et références
+# Composants et références
 
-## Code récupéré et adapté
-- Liquid Sculpture Hero — Guglielmo Giannattasio : https://21st.dev/@gughigug/components/liquid-sculpture-hero . Moteur WebGL2 de matière liquide dans assets/liquid-engine.js, branché sur une capture de la sculpture 3D Eskis. Sources obtenues via le MCP 21st.dev le 19 octobre 2026.
-- LiquidGlass — manfromexistence : https://21st.dev/@manfromexistence/components/liquid-glass . Fonction de distance à un rectangle arrondi, smooth-step et carte de déplacement RGBA adaptés dans script.js pour les surfaces de verre. Le déplacement libre de la lentille du composant initial n’est pas repris.
+## Code fourni et adapté
+- Horizon Hero Section — lovesickfromthe6ix : https://21st.dev/@lovesickfromthe6ix/components/horizon-hero-section . Code fourni par le propriétaire du site le 19 octobre 2026. Shaders de particules, paysage en couches, bloom et caméra interpolée adaptés au site statique, à la palette et au titre ESKIS. Terrain en volume, gestion des ressources, thème et accessibilité ajoutés.
+- Radial Orbital Timeline — jatin-yadav05 : https://21st.dev/@jatin-yadav05/components/radial-orbital-timeline . Code fourni par le propriétaire du site. Géométrie orbitale, sélection des étapes, recentrage et relations adaptés en JavaScript, dans une fenêtre accessible.
 
-## Aperçus étudiés, réimplémentations spécifiques
-- Scroll Gallery — Soralabs : https://21st.dev/@soralabs/components/scroll-gallery . Référence pour le défilement épinglé et la révélation des projets par masque.
-- Portfolio Scroll Grid — Ruixen UI : https://21st.dev/@ruixen.ui/components/portfolio-scroll-grid . Référence pour la grille décalée devant une grande composition typographique.
-- Works Wheel — Crafter UI, Portfolio Gallery — Isaiah Bjork et Magnetic Liquid Button — Himansujha ont été comparés pendant la sélection ; leur code n’a pas été récupéré.
+## Réimplémentation à partir des aperçus
+Le code original de ces trois composants n’a pas été récupéré. Leur présentation a servi de référence, selon la demande du propriétaire du site.
+- Animated Hero — Tommy Jepsen : https://21st.dev/@tommyjepsen/components/animated-hero . Composition centrée, fond à points et alternance de mots.
+- Tilted Grid Hero — Ruixen UI : https://21st.dev/@ruixen.ui/components/tilted-grid-hero . Bande incurvée, perspective, défilement continu et bords estompés ; projets ESKIS, pause et navigation ajoutés.
+- Contact Form — meschacirung : https://21st.dev/@meschacirung/components/contact-form . Titre centré et formulaire dans une carte ; champs et fonctionnement adaptés à la démonstration.
 
-La géométrie 3D, le shader de métal, les galeries, le changement de thème et la composition du site ont été développés pour Eskis. Les attributions sont également présentes dans la page Informations.
+## Ressources conservées des versions précédentes
+- LiquidGlass — manfromexistence : https://21st.dev/@manfromexistence/components/liquid-glass . Réfraction adaptée depuis le code récupéré via le MCP 21st.dev.
+- Liquid Sculpture Hero — Guglielmo Giannattasio : https://21st.dev/@gughigug/components/liquid-sculpture-hero . Moteur de matière liquide conservé dans les ressources ; attribution intégrée au fichier.
+
+## Bibliothèques et identité
+Three.js 0.186.1 (MIT) et GSAP 3.15.0. Les notices sont dans assets/. DM Sans sous SIL OFL, hébergée localement. Tracés du logo fournis par leur propriétaire, conservés en monochrome. Les douze créations de portfolio sont fictives et réalisées pour ce site.

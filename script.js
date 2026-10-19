@@ -18,14 +18,19 @@
   window.addEventListener('storage',e=>{if(e.key==='eskis-theme')applyTheme(e.newValue)});
 
   const menu=document.querySelector('.menu-toggle'),nav=document.getElementById('main-nav');
-  const closeMenu=()=>{menu?.setAttribute('aria-expanded','false');nav?.classList.remove('is-open');document.body.classList.remove('menu-open')};
+  if(nav)nav.inert=true;
+  function closeMenu(){
+    menu?.setAttribute('aria-expanded','false');nav?.classList.remove('is-open');if(nav)nav.inert=true;
+    document.body.classList.remove('menu-open');document.querySelector('main').inert=false;document.querySelector('.site-footer').inert=false;
+  }
   menu?.addEventListener('click',()=>{
     const open=menu.getAttribute('aria-expanded')!=='true';
-    menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open);document.body.classList.toggle('menu-open',open);
-    if(open)nav.querySelector('a')?.focus();
+    if(!open){closeMenu();return}
+    menu.setAttribute('aria-expanded','true');nav.inert=false;nav.classList.add('is-open');document.body.classList.add('menu-open');
+    document.querySelector('main').inert=true;document.querySelector('.site-footer').inert=true;
+    nav.querySelector('a')?.focus({preventScroll:true});
   });
   nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
-  matchMedia('(min-width:761px)').addEventListener('change',e=>{if(e.matches)closeMenu()});
   document.addEventListener('keydown',e=>{
     if(!nav?.classList.contains('is-open'))return;
     if(e.key==='Escape'){closeMenu();menu.focus()}
@@ -150,6 +155,6 @@
     });
   }
   if(document.getElementById('sculpture')){
-    import('./assets/scene.js').then(module=>module.initSculpture()).catch(()=>{document.getElementById('art-hint').textContent='Une forme libre. Un regard singulier.'});
+    import('./assets/scene.js').then(module=>module.initSculpture()).catch(()=>{document.getElementById('sculpture').classList.add('art-fallback')});
   }
 })();

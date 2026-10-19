@@ -1,18 +1,21 @@
-# ESKIS — portfolio immersif
+# ESKIS — When creativity connect us.
 
-Site statique autonome en HTML, CSS et JavaScript. Aucun service externe requis pour les animations, les polices ou la 3D.
+Portfolio statique en HTML, CSS et JavaScript. 19 pages dont 12 projets fictifs. Ressources, polices et bibliothèques hébergées localement.
 
-## Contenu
-5 pages principales, 12 fiches de projets fictifs, informations et 404. Palette noir / crème, thème mémorisé, navigation Liquid Glass, sculpture WebGL en volume, mode matière liquide, galerie au scroll, survols magnétiques, filtres et estimation à 30 €/heure.
+## Expérience
+Ouverture Horizon en 3D avec paysage monochrome, caméra au défilement et particules. Titre à mots animés, services et tarif à 30 €/h, galerie incurvée des douze projets suivie directement du formulaire. Fenêtre orbitale interactive pour les cinq étapes du projet. Menu plein écran, thème noir ou crème mémorisé, effets de verre et uniquement des typographies sans serif.
 
 ## Ouvrir et publier
-Pour la 3D et les modules JavaScript, servir le dossier avec un serveur HTTP statique. Sur GitHub Pages : `main`, dossier `/` (racine). Tous les liens sont relatifs au dépôt.
+Servir ce dossier avec un serveur HTTP statique. Pour GitHub Pages : branche `main`, dossier `/` (racine). Les liens et ressources restent relatifs au dépôt. Le site compilé fonctionne sans installation ni accès à un CDN.
 
-## Composants 21st.dev
-Le moteur de particules est adapté de **Liquid Sculpture Hero**, Guglielmo Giannattasio : https://21st.dev/@gughigug/components/liquid-sculpture-hero . La réfraction est adaptée de **LiquidGlass**, manfromexistence : https://21st.dev/@manfromexistence/components/liquid-glass . Attributions conservées dans le code et la page Informations. Les galeries ont été développées à partir de l’étude des aperçus de Scroll Gallery (Soralabs) et Portfolio Scroll Grid (Ruixen UI), sans récupération de leur code.
+## Modifier
+Les pages HTML, `style.css`, `experience.css`, `script.js` et `experience.js` sont directement éditables. Le module 3D compilé est `assets/horizon.js` ; sa source lisible est `src/horizon.js`. Pour le reconstruire : `npm install`, puis `npm run build:horizon`. Les versions de Three.js, GSAP et esbuild sont fixées dans `package.json`.
+
+## Références 21st.dev
+Les codes de Horizon Hero Section et Radial Orbital Timeline ont été fournis par le propriétaire du site. Les trois autres composants sont réimplémentés à partir de leurs aperçus, avec son accord. Détails et liens dans `21ST-CREDITS.md` et la page Informations.
 
 ## Démonstration et contact
-Les projets et coordonnées sont fictifs. Le formulaire génère uniquement un brief téléchargeable. Ajouter les coordonnées réelles et connecter un service d’envoi pour recevoir des demandes. Compléter les informations de l’éditeur. Le tarif affiché est de 30 € / heure ; l’estimation reste indicative.
+Les projets et coordonnées sont fictifs. Le formulaire produit un brief téléchargeable, sans envoi de message. Ajouter les coordonnées réelles et connecter un service d’envoi pour recevoir les demandes. Compléter les informations de l’éditeur avant l’utilisation commerciale. Le tarif affiché est de 30 €/heure ; les estimations restent indicatives.
 
-## Accessibilité et ressources
-Animations réduites avec `prefers-reduced-motion`. Repli SVG sans WebGL. Le verre utilise un flou et des reflets si la réfraction SVG n’est pas prise en charge. Contraste et navigation au clavier adaptés aux deux thèmes. Polices locales sous SIL OFL. Le choix de thème est la seule donnée conservée localement.
+## Accessibilité
+Animations réduites avec `prefers-reduced-motion`, moteurs suspendus hors écran, pause de galerie, commandes clavier, formulaires étiquetés et repli visuel sans WebGL. Le thème est la seule préférence stockée dans le navigateur. Aucun outil de suivi ajouté.
