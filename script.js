@@ -1,118 +1,155 @@
-/* Eskis — progressive enhancement; all pages and navigation work without JS. */
+/* Eskis — custom orchestration; LiquidGlass refraction adapted from manfromexistence via 21st.dev. */
 (() => {
-  document.documentElement.classList.add('js');
-  const menuButton = document.querySelector('.menu-toggle');
-  const nav = document.getElementById('main-nav');
-  function closeMenu() {
-    menuButton?.setAttribute('aria-expanded', 'false');
-    nav?.classList.remove('is-open');
-    document.body.classList.remove('menu-open');
+  const root=document.documentElement;
+  root.classList.add('js');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  const fine=matchMedia('(hover: hover) and (pointer: fine)');
+  const themeButton=document.querySelector('.theme-toggle');
+  function applyTheme(mode,save=false){
+    root.dataset.theme=mode==='light'?'light':'dark';
+    themeButton?.setAttribute('aria-label',mode==='dark'?'Passer au thème clair':'Passer au thème sombre');
+    themeButton?.setAttribute('aria-pressed',String(mode==='light'));
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content',mode==='light'?'#f2efe7':'#171715');
+    if(save){try{localStorage.setItem('eskis-theme',root.dataset.theme)}catch{}}
+    window.dispatchEvent(new CustomEvent('eskis:theme',{detail:root.dataset.theme}));
   }
-  menuButton?.addEventListener('click', () => {
-    const open = menuButton.getAttribute('aria-expanded') !== 'true';
-    menuButton.setAttribute('aria-expanded', String(open));
-    nav.classList.toggle('is-open', open);
-    document.body.classList.toggle('menu-open', open);
-    if (open) nav.querySelector('a')?.focus();
+  applyTheme(root.dataset.theme);
+  themeButton?.addEventListener('click',()=>applyTheme(root.dataset.theme==='dark'?'light':'dark',true));
+  window.addEventListener('storage',e=>{if(e.key==='eskis-theme')applyTheme(e.newValue)});
+
+  const menu=document.querySelector('.menu-toggle'),nav=document.getElementById('main-nav');
+  const closeMenu=()=>{menu?.setAttribute('aria-expanded','false');nav?.classList.remove('is-open');document.body.classList.remove('menu-open')};
+  menu?.addEventListener('click',()=>{
+    const open=menu.getAttribute('aria-expanded')!=='true';
+    menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open);document.body.classList.toggle('menu-open',open);
+    if(open)nav.querySelector('a')?.focus();
   });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && nav?.classList.contains('is-open')) {
-      closeMenu();
-      menuButton.focus();
-    }
-    if (e.key === 'Tab' && nav?.classList.contains('is-open')) {
-      const items = [menuButton, ...nav.querySelectorAll('a')];
-      const first = items[0], last = items[items.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+  matchMedia('(min-width:761px)').addEventListener('change',e=>{if(e.matches)closeMenu()});
+  document.addEventListener('keydown',e=>{
+    if(!nav?.classList.contains('is-open'))return;
+    if(e.key==='Escape'){closeMenu();menu.focus()}
+    if(e.key==='Tab'){
+      const items=[themeButton,menu,...nav.querySelectorAll('a')].filter(Boolean),first=items[0],last=items.at(-1);
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
     }
   });
-  nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-  matchMedia('(min-width: 761px)').addEventListener('change', e => { if (e.matches) closeMenu(); });
 
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  if ('IntersectionObserver' in window && !reduceMotion.matches) {
-    document.documentElement.classList.add('motion-enabled');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
-      });
-    }, { threshold: .06 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    reduceMotion.addEventListener('change', e => {
-      if (e.matches) { document.documentElement.classList.remove('motion-enabled'); observer.disconnect(); }
-    });
-  }
+  if('IntersectionObserver' in window){
+    const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}
+    }),{threshold:.04});
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+  }else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
 
-  const cursor = document.querySelector('.cursor-label');
-  if (cursor && matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion.matches) {
-    let frame;
-    document.querySelectorAll('.project-cover').forEach(cover => {
-      cover.addEventListener('pointerenter', () => cursor.classList.add('visible'));
-      cover.addEventListener('pointerleave', () => cursor.classList.remove('visible'));
-      cover.addEventListener('pointermove', e => {
-        cancelAnimationFrame(frame);
-        frame = requestAnimationFrame(() => { cursor.style.transform = `translate(${e.clientX - 46}px, ${e.clientY - 46}px)`; });
-      });
+  const filters=document.querySelectorAll('[data-filter]');
+  filters.forEach(button=>button.addEventListener('click',()=>{
+    const value=button.dataset.filter;let count=0;
+    filters.forEach(item=>{const selected=item===button;item.classList.toggle('active',selected);item.setAttribute('aria-pressed',String(selected))});
+    document.querySelectorAll('.portfolio-grid .project-card').forEach(card=>{
+      const visible=value==='all'||card.dataset.category.split(' ').includes(value);
+      card.hidden=!visible;if(visible){count++;card.classList.add('visible')}
     });
-    window.addEventListener('scroll', () => cursor.classList.remove('visible'), { passive: true });
-  }
-
-  const filters = document.querySelectorAll('[data-filter]');
-  filters.forEach(button => button.addEventListener('click', () => {
-    const value = button.dataset.filter;
-    filters.forEach(item => {
-      const selected = item === button;
-      item.classList.toggle('active', selected);
-      item.setAttribute('aria-pressed', String(selected));
-    });
-    let count = 0;
-    document.querySelectorAll('.portfolio-grid .project-card').forEach(card => {
-      const visible = value === 'all' || card.dataset.category.split(' ').includes(value);
-      card.hidden = !visible;
-      if (visible) { count++; card.classList.add('is-visible'); }
-    });
-    document.querySelector('.portfolio-grid')?.classList.toggle('filtered', value !== 'all');
-    const status = document.getElementById('filter-status');
-    if (status) status.textContent = `${count} projet${count > 1 ? 's' : ''} affiché${count > 1 ? 's' : ''}`;
+    document.querySelector('.portfolio-grid')?.classList.toggle('filtered',value!=='all');
+    const status=document.getElementById('filter-status');if(status)status.textContent=`${count} projet${count>1?'s':''} affiché${count>1?'s':''}`;
   }));
 
-  const form = document.getElementById('quote-form');
-  const dialog = document.getElementById('brief-dialog');
-  let brief = '';
-  if (form) {
-    const selected = new URLSearchParams(location.search).get('service');
-    form.querySelectorAll('[data-service]').forEach(input => { input.checked = input.dataset.service === selected; });
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
-      const data = new FormData(form);
-      const choices = data.getAll('services');
-      brief = [
-        'ESKIS — DEMANDE DE DEVIS',
-        'Document préparé dans le site de démonstration. Aucun message envoyé.',
-        '', `Nom : ${data.get('name')}`, `E-mail : ${data.get('email')}`,
-        `Entreprise / projet : ${data.get('company') || 'Non renseigné'}`,
-        '', `Prestations : ${choices.length ? choices.join(', ') : 'À définir ensemble'}`,
-        `Budget : ${data.get('budget')}`, `Calendrier : ${data.get('timing')}`,
-        '', 'LE PROJET', data.get('message')
-      ].join('\n');
-      document.getElementById('brief-preview').textContent = brief;
-      dialog.showModal();
-      dialog.querySelector('.dialog-close').focus();
+  const hours=document.getElementById('hours');
+  const updatePrice=()=>{
+    const h=Number(hours.value);document.getElementById('hours-label').textContent=`${h} heure${h>1?'s':''}`;
+    document.getElementById('estimate-total').textContent=new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(h*30);
+  };
+  hours?.addEventListener('input',updatePrice);
+  if(hours)updatePrice();
+
+  // LiquidGlass's rounded rectangle SDF and smooth-step displacement,
+  // adapted to a static control surface rather than a draggable lens.
+  // https://21st.dev/@manfromexistence/components/liquid-glass
+  function smoothStep(a,b,t){t=Math.max(0,Math.min(1,(t-a)/(b-a)));return t*t*(3-2*t)}
+  function roundedRectSDF(x,y,width,height,radius){
+    const qx=Math.abs(x)-width+radius,qy=Math.abs(y)-height+radius;
+    return Math.min(Math.max(qx,qy),0)+Math.hypot(Math.max(qx,0),Math.max(qy,0))-radius;
+  }
+  if(!reduced.matches){
+    const ns='http://www.w3.org/2000/svg';
+    const svg=document.createElementNS(ns,'svg');svg.setAttribute('width','0');svg.setAttribute('height','0');svg.setAttribute('aria-hidden','true');svg.style.cssText='position:fixed;pointer-events:none';
+    const defs=document.createElementNS(ns,'defs');svg.appendChild(defs);document.body.appendChild(svg);
+    document.querySelectorAll('.floating-nav,.theme-toggle,.art-controls,.rate-card,.contact-rate').forEach((el,index)=>{
+      const filter=document.createElementNS(ns,'filter');filter.id=`eskis-glass-${index}`;
+      filter.setAttribute('filterUnits','userSpaceOnUse');filter.setAttribute('color-interpolation-filters','sRGB');
+      const image=document.createElementNS(ns,'feImage');image.setAttribute('result','map');
+      const displacement=document.createElementNS(ns,'feDisplacementMap');displacement.setAttribute('in','SourceGraphic');displacement.setAttribute('in2','map');displacement.setAttribute('xChannelSelector','R');displacement.setAttribute('yChannelSelector','G');
+      filter.append(image,displacement);defs.appendChild(filter);
+      let last='';
+      const update=()=>{
+        const rect=el.getBoundingClientRect(),w=Math.min(640,Math.round(rect.width)),h=Math.min(560,Math.round(rect.height));
+        if(w<2||h<2||`${w},${h}`===last)return;last=`${w},${h}`;
+        const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d');if(!ctx)return;
+        const data=ctx.createImageData(w,h),r=Math.min(28,h/2),scale=14;
+        for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+          const px=x-w/2,py=y-h/2,d=roundedRectSDF(px,py,w/2,h/2,r),bend=1-smoothStep(0,14,-d);
+          const gx=roundedRectSDF(px+.5,py,w/2,h/2,r)-roundedRectSDF(px-.5,py,w/2,h/2,r),gy=roundedRectSDF(px,py+.5,w/2,h/2,r)-roundedRectSDF(px,py-.5,w/2,h/2,r);
+          const n=Math.hypot(gx,gy)||1,i=(y*w+x)*4;
+          data.data[i]=(0.5+gx/n*bend*.48)*255;data.data[i+1]=(0.5+gy/n*bend*.48)*255;data.data[i+2]=128;data.data[i+3]=255;
+        }
+        ctx.putImageData(data,0,0);filter.setAttribute('width',String(w));filter.setAttribute('height',String(h));image.setAttribute('width',String(w));image.setAttribute('height',String(h));image.setAttribute('href',canvas.toDataURL());displacement.setAttribute('scale',String(scale));
+        el.style.setProperty('--refraction',`url(#${filter.id})`);el.classList.add('has-refraction');
+      };
+      let timer;const observer=new ResizeObserver(()=>{clearTimeout(timer);timer=setTimeout(update,100)});observer.observe(el);
     });
-    dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
-    dialog.querySelector('.dialog-back').addEventListener('click', () => dialog.close());
-    dialog.addEventListener('click', e => { if (e.target === dialog) {
-      const box = dialog.getBoundingClientRect();
-      if (e.clientX < box.left || e.clientX > box.right || e.clientY < box.top || e.clientY > box.bottom) dialog.close();
-    }});
-    document.getElementById('download-brief').addEventListener('click', () => {
-      const url = URL.createObjectURL(new Blob(['\uFEFF' + brief], { type: 'text/plain;charset=utf-8' }));
-      const link = document.createElement('a');
-      link.href = url; link.download = 'mon-brief-eskis.txt';
-      document.body.appendChild(link); link.click(); link.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  const gallery=document.querySelector('[data-scroll-gallery]');
+  let scrollFrame;
+  function updateScroll(){
+    scrollFrame=0;
+    document.body.classList.toggle('has-scrolled',scrollY>80);
+    if(!gallery||reduced.matches||innerWidth<=760)return;
+    const rect=gallery.getBoundingClientRect(),distance=gallery.offsetHeight-innerHeight;
+    const p=Math.max(0,Math.min(1,-rect.top/Math.max(1,distance))),slides=[...gallery.querySelectorAll('.gallery-slide')],phase=p*(slides.length-1);
+    slides.forEach((slide,i)=>{
+      const wipe=i===slides.length-1?0:Math.max(0,Math.min(1,phase-i))*100;
+      slide.style.clipPath=`inset(0 0 ${wipe}% 0)`;
+      const image=slide.querySelector('img');image.style.transform=`scale(${1.06-Math.max(0,Math.min(1,phase-i))*.06})`;
     });
+    gallery.querySelector('.gallery-progress>span').style.transform=`scaleX(${p})`;
+    gallery.querySelector('.gallery-counter>b').textContent=String(Math.min(slides.length,Math.floor(phase+.35)+1)).padStart(2,'0');
+  }
+  const requestScroll=()=>{if(!scrollFrame)scrollFrame=requestAnimationFrame(updateScroll)};
+  addEventListener('scroll',requestScroll,{passive:true});addEventListener('resize',requestScroll,{passive:true});reduced.addEventListener('change',requestScroll);requestScroll();
+
+  if(fine.matches&&!reduced.matches){
+    document.querySelectorAll('[data-magnetic]').forEach(el=>{
+      el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.10}px,${(e.clientY-r.top-r.height/2)*.12}px)`});
+      el.addEventListener('pointerleave',()=>{el.style.transform=''});
+    });
+    const cursor=document.querySelector('.project-cursor');let frame;
+    document.querySelectorAll('.project-cover').forEach(el=>{
+      el.addEventListener('pointerenter',()=>cursor?.classList.add('visible'));
+      el.addEventListener('pointerleave',()=>cursor?.classList.remove('visible'));
+      el.addEventListener('pointermove',e=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{if(cursor)cursor.style.transform=`translate(${e.clientX-40}px,${e.clientY-40}px)`})});
+    });
+    addEventListener('scroll',()=>cursor?.classList.remove('visible'),{passive:true});
+  }
+
+  const form=document.getElementById('quote-form'),dialog=document.getElementById('brief-dialog');let brief='';
+  if(form){
+    const service=new URLSearchParams(location.search).get('service');
+    form.querySelectorAll('[data-service]').forEach(el=>{el.checked=el.dataset.service===service});
+    form.addEventListener('submit',e=>{
+      e.preventDefault();if(!form.reportValidity())return;
+      const data=new FormData(form),choices=data.getAll('services');
+      brief=['ESKIS — DEMANDE DE DEVIS','Démonstration : aucun message envoyé. Tarif de référence : 30 € / heure.','',`Nom : ${data.get('name')}`,`E-mail : ${data.get('email')}`,`Projet : ${data.get('company')||'À préciser'}`,'',`Prestations : ${choices.join(', ')||'À définir ensemble'}`,`Budget : ${data.get('budget')}`,`Calendrier : ${data.get('timing')}`,'','LE PROJET',data.get('message')].join('\n');
+      document.getElementById('brief-preview').textContent=brief;dialog.showModal();dialog.querySelector('.dialog-close').focus();
+    });
+    dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());dialog.querySelector('.dialog-back').addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
+    document.getElementById('download-brief').addEventListener('click',()=>{
+      const url=URL.createObjectURL(new Blob(['\uFEFF'+brief],{type:'text/plain;charset=utf-8'})),link=document.createElement('a');link.href=url;link.download='mon-brief-eskis.txt';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    });
+  }
+  if(document.getElementById('sculpture')){
+    import('./assets/scene.js').then(module=>module.initSculpture()).catch(()=>{document.getElementById('art-hint').textContent='Une forme libre. Un regard singulier.'});
   }
 })();

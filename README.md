@@ -1,20 +1,18 @@
-# ESKIS — portfolio graphique
+# ESKIS — portfolio immersif
 
-Site statique en HTML, CSS et JavaScript natifs, sans installation ni compilation.
+Site statique autonome en HTML, CSS et JavaScript. Aucun service externe requis pour les animations, les polices ou la 3D.
 
-## Pages
-Accueil, projets avec filtres, quatre fiches projets, expertises, à propos, contact, informations et page 404.
+## Contenu
+5 pages principales, 12 fiches de projets fictifs, informations et 404. Palette noir / crème, thème mémorisé, navigation Liquid Glass, sculpture WebGL en volume, mode matière liquide, galerie au scroll, survols magnétiques, filtres et estimation à 30 €/heure.
 
-## Prévisualisation
-Ouvrir `index.html`, ou lancer un serveur statique à la racine du dépôt.
+## Ouvrir et publier
+Pour la 3D et les modules JavaScript, servir le dossier avec un serveur HTTP statique. Sur GitHub Pages : `main`, dossier `/` (racine). Tous les liens sont relatifs au dépôt.
 
-## Publication
-GitHub Pages : branche `main`, dossier `/` (racine). Tous les liens sont relatifs pour fonctionner dans le sous-dossier du dépôt.
+## Composants 21st.dev
+Le moteur de particules est adapté de **Liquid Sculpture Hero**, Guglielmo Giannattasio : https://21st.dev/@gughigug/components/liquid-sculpture-hero . La réfraction est adaptée de **LiquidGlass**, manfromexistence : https://21st.dev/@manfromexistence/components/liquid-glass . Attributions conservées dans le code et la page Informations. Les galeries ont été développées à partir de l’étude des aperçus de Scroll Gallery (Soralabs) et Portfolio Scroll Grid (Ruixen UI), sans récupération de leur code.
 
-## Contenu de démonstration
-Les quatre projets sont fictifs et signalés comme tels. Le formulaire prépare un brief téléchargeable et n’envoie aucun e-mail. L’adresse `bonjour@eskis.example` doit être remplacée par l’adresse professionnelle réelle, puis le formulaire connecté à un service d’envoi avant d’accepter des demandes. Les mentions de l’éditeur restent à compléter.
+## Démonstration et contact
+Les projets et coordonnées sont fictifs. Le formulaire génère uniquement un brief téléchargeable. Ajouter les coordonnées réelles et connecter un service d’envoi pour recevoir des demandes. Compléter les informations de l’éditeur. Le tarif affiché est de 30 € / heure ; l’estimation reste indicative.
 
-## Personnalisation
-Textes : fichiers HTML. Couleurs, espacements, typographies : variables dans `style.css`. Interactions : `script.js`. Logo et visuels : dossier `assets`.
-
-Les polices sont hébergées localement sous licence SIL OFL. Les tracés du logo fourni ont été conservés. Le site respecte la préférence de réduction des animations.
+## Accessibilité et ressources
+Animations réduites avec `prefers-reduced-motion`. Repli SVG sans WebGL. Le verre utilise un flou et des reflets si la réfraction SVG n’est pas prise en charge. Contraste et navigation au clavier adaptés aux deux thèmes. Polices locales sous SIL OFL. Le choix de thème est la seule donnée conservée localement.
