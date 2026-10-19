@@ -32,7 +32,7 @@
   new IntersectionObserver(entries=>{wordVisible=entries[0].isIntersecting;startWords()},{threshold:.15}).observe(intro);
 
   const stage=document.querySelector('.tilted-stage'),belt=document.querySelector('.tilted-belt'),cards=[...belt.querySelectorAll('.tilted-card')];
-  const pause=document.querySelector('.gallery-play');let phase=1,galFrame=0,lastTime=0,galVisible=false,paused=reduced.matches,hover=false,cardWidth=300;
+  const pause=document.querySelector('.gallery-play');let phase=1,galFrame=0,lastTime=0,galVisible=false,paused=reduced.matches,cardWidth=300;
   const mod=(n,m)=>((n%m)+m)%m;
   function renderGallery(){
     cards.forEach((card,i)=>{
@@ -46,21 +46,24 @@
   }
   function resizeGallery(){cardWidth=cards[0].getBoundingClientRect().width||300;const cssWidth=getComputedStyle(cards[0]).width;cardWidth=parseFloat(cssWidth)||cardWidth;renderGallery()}
   function galleryLoop(t){
-    galFrame=0;if(!galVisible||paused||hover||document.hidden)return;
+    galFrame=0;if(!galVisible||paused||document.hidden)return;
     if(lastTime)phase=mod(phase+Math.min(40,t-lastTime)*.00013,cards.length);
     lastTime=t;renderGallery();galFrame=requestAnimationFrame(galleryLoop);
   }
-  function wakeGallery(){cancelAnimationFrame(galFrame);lastTime=0;if(galVisible&&!paused&&!hover&&!document.hidden)galFrame=requestAnimationFrame(galleryLoop)}
+  function wakeGallery(){cancelAnimationFrame(galFrame);lastTime=0;if(galVisible&&!paused&&!document.hidden)galFrame=requestAnimationFrame(galleryLoop)}
   function updatePause(){pause.setAttribute('aria-pressed',String(paused));pause.setAttribute('aria-label',paused?'Animer la galerie':'Mettre la galerie en pause');pause.innerHTML=paused?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z" fill="currentColor"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2"/></svg>';wakeGallery()}
   pause.addEventListener('click',()=>{paused=!paused;updatePause()});
   function stepGallery(delta){paused=true;phase=mod(Math.round(phase)+delta,cards.length);renderGallery();updatePause()}
   document.querySelector('.gallery-prev').addEventListener('click',()=>stepGallery(-1));document.querySelector('.gallery-next').addEventListener('click',()=>stepGallery(1));
-  belt.addEventListener('pointerenter',()=>{hover=true;wakeGallery()});belt.addEventListener('pointerleave',()=>{hover=false;wakeGallery()});
   belt.addEventListener('focusin',e=>{const i=cards.indexOf(e.target.closest('.tilted-card'));if(i<0)return;paused=true;phase=i;renderGallery();updatePause()});
   stage.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();stepGallery(e.key==='ArrowRight'?1:-1);cards[Math.round(phase)].focus({preventScroll:true})}});
   new IntersectionObserver(entries=>{galVisible=entries[0].isIntersecting;wakeGallery()},{rootMargin:'100px'}).observe(stage);
   new ResizeObserver(resizeGallery).observe(stage);resizeGallery();updatePause();
   reduced.addEventListener('change',()=>{if(reduced.matches){paused=true;updatePause()}startWords()});
+
+  const serviceCloud=document.querySelector('.service-cloud');
+  new IntersectionObserver(entries=>serviceCloud.classList.toggle('is-floating',entries[0].isIntersecting&&!document.hidden),{threshold:.1}).observe(serviceCloud);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)serviceCloud.classList.remove('is-floating');else{const r=serviceCloud.getBoundingClientRect();serviceCloud.classList.toggle('is-floating',r.bottom>0&&r.top<innerHeight)}});
 
   // Adapted from jatin-yadav05's supplied Radial Orbital Timeline:
   // angular positioning, related nodes, rotation and centering on selection.
@@ -103,7 +106,10 @@
   nodes.forEach((node,i)=>node.addEventListener('click',()=>selectStep(i)));
   process.querySelector('[data-related-step]').addEventListener('click',e=>selectStep(Number(e.currentTarget.dataset.relatedStep)));
   orbitPlay.addEventListener('click',()=>{orbitAuto=!orbitAuto;orbitPlay.textContent=orbitAuto?'Mettre l’orbite en pause Ⅱ':'Animer l’orbite ↻';orbitPlay.setAttribute('aria-pressed',String(orbitAuto));wakeOrbit()});
-  document.querySelectorAll('[data-open-process]').forEach(button=>button.addEventListener('click',()=>{origin=button;process.showModal();document.body.classList.add('process-open');selectStep(0);process.querySelector('.process-close').focus()}));
+  function openProcess(button){origin=button;if(!process.open)process.showModal();document.body.classList.add('process-open');selectStep(0);process.querySelector('.process-close').focus()}
+  document.querySelectorAll('[data-open-process]').forEach(button=>button.addEventListener('click',()=>openProcess(button)));
+  function openProcessFromHash(){if(location.hash==='#deroulement')openProcess(null)}
+  addEventListener('hashchange',openProcessFromHash);openProcessFromHash();
   process.querySelector('.process-close').addEventListener('click',()=>process.close());
   process.querySelector('[data-close-process]').addEventListener('click',()=>process.close());
   process.addEventListener('close',()=>{document.body.classList.remove('process-open');cancelAnimationFrame(orbitFrame);origin?.focus({preventScroll:true})});
