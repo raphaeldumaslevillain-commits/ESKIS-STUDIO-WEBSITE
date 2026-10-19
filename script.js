@@ -149,7 +149,8 @@
     form.addEventListener('submit',e=>{
       e.preventDefault();if(!form.reportValidity())return;
       const data=new FormData(form),choices=data.getAll('services');
-      brief=['ESKIS — DEMANDE DE DEVIS','Démonstration : aucun message envoyé. Tarif de référence : 30 € / heure.','',`Nom : ${data.get('name')}`,`E-mail : ${data.get('email')}`,`Projet : ${data.get('company')||'À préciser'}`,'',`Prestations : ${choices.join(', ')||'À définir ensemble'}`,`Budget : ${data.get('budget')}`,`Calendrier : ${data.get('timing')}`,'','LE PROJET',data.get('message')].join('\n');
+      const notice='Démonstration : aucun message envoyé.'+(form.hasAttribute('data-hide-prices')?'':' Tarif de référence : 30 € / heure.');
+      brief=['ESKIS — DEMANDE DE DEVIS',notice,'',`Nom : ${data.get('name')}`,`E-mail : ${data.get('email')}`,`Projet : ${data.get('company')||'À préciser'}`,'',`Prestations : ${choices.join(', ')||'À définir ensemble'}`,...(data.has('budget')?[`Budget : ${data.get('budget')}`]:[]),`Calendrier : ${data.get('timing')||'À définir ensemble'}`,'','LE PROJET',data.get('message')].join('\n');
       document.getElementById('brief-preview').textContent=brief;dialog.showModal();dialog.querySelector('.dialog-close').focus();
     });
     dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());dialog.querySelector('.dialog-back').addEventListener('click',()=>dialog.close());
