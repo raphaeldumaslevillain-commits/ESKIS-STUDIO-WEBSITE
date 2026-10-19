@@ -1,4 +1,4 @@
-/* ESKIS · source-based Horizon / orbital timeline; visual adaptations of three 21st previews. */
+/* ESKIS · source-based Horizon / orbital timeline; visual adaptations of 21st previews. */
 (() => {
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const horizon=document.getElementById('horizon');
@@ -60,10 +60,6 @@
   new IntersectionObserver(entries=>{galVisible=entries[0].isIntersecting;wakeGallery()},{rootMargin:'100px'}).observe(stage);
   new ResizeObserver(resizeGallery).observe(stage);resizeGallery();updatePause();
   reduced.addEventListener('change',()=>{if(reduced.matches){paused=true;updatePause()}startWords()});
-
-  const serviceCloud=document.querySelector('.service-cloud');
-  new IntersectionObserver(entries=>serviceCloud.classList.toggle('is-floating',entries[0].isIntersecting&&!document.hidden),{threshold:.1}).observe(serviceCloud);
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)serviceCloud.classList.remove('is-floating');else{const r=serviceCloud.getBoundingClientRect();serviceCloud.classList.toggle('is-floating',r.bottom>0&&r.top<innerHeight)}});
 
   // Adapted from jatin-yadav05's supplied Radial Orbital Timeline:
   // angular positioning, related nodes, rotation and centering on selection.

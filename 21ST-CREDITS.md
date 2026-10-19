@@ -5,10 +5,12 @@
 - Radial Orbital Timeline — jatin-yadav05 : https://21st.dev/@jatin-yadav05/components/radial-orbital-timeline . Code fourni par le propriétaire du site. Géométrie orbitale, sélection des étapes, recentrage et relations adaptés en JavaScript, dans une fenêtre accessible.
 
 ## Réimplémentation à partir des aperçus
-Le code original de ces trois composants n’a pas été récupéré. Leur présentation a servi de référence, selon la demande du propriétaire du site.
+Le code original de ces quatre composants n’a pas été récupéré. Leur présentation a servi de référence, selon la demande du propriétaire du site.
 - Animated Hero — Tommy Jepsen : https://21st.dev/@tommyjepsen/components/animated-hero . Composition centrée, fond à points et alternance de mots.
 - Tilted Grid Hero — Ruixen UI : https://21st.dev/@ruixen.ui/components/tilted-grid-hero . Bande incurvée, perspective, défilement continu et bords estompés ; projets ESKIS, pause et navigation ajoutés.
 - Contact Form — meschacirung : https://21st.dev/@meschacirung/components/contact-form . Titre centré et formulaire dans une carte ; champs et fonctionnement adaptés à la démonstration.
+
+- Glassmorphism Folder Cards — kedhareswer : https://21st.dev/@kedhareswer/components/glass-folder-cards . Recréé à partir de l’aperçu public : forme de dossier givré, assemblage au défilement, inclinaison au pointeur, ouverture et fiches en éventail. Adapté aux six services, aux thèmes ESKIS, au clavier et au toucher. Les fiches ouvrent le formulaire de devis avec la prestation présélectionnée. Aucune fonction de gestion ou d’ajout de fichiers.
 
 ## Ressources conservées des versions précédentes
 - LiquidGlass — manfromexistence : https://21st.dev/@manfromexistence/components/liquid-glass . Réfraction adaptée depuis le code récupéré via le MCP 21st.dev.
