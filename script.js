@@ -146,6 +146,11 @@
   if(form){
     const service=new URLSearchParams(location.search).get('service');
     form.querySelectorAll('[data-service]').forEach(el=>{el.checked=el.dataset.service===service});
+    const selectedService=form.querySelector('[data-selected-service]');
+    if(selectedService){
+      const labels={identite:'Identité visuelle',direction:'Direction artistique',edition:'Édition & print',digital:'Webdesign',packaging:'Packaging',communication:'Social design'};
+      selectedService.value=Object.hasOwn(labels,service)?labels[service]:'';
+    }
     form.addEventListener('submit',e=>{
       e.preventDefault();if(!form.reportValidity())return;
       const data=new FormData(form),choices=data.getAll('services');
