@@ -2,7 +2,7 @@
 
 ## Code fourni et adapté
 - Horizon Hero Section — lovesickfromthe6ix : https://21st.dev/@lovesickfromthe6ix/components/horizon-hero-section . Code fourni par le propriétaire du site le 19 octobre 2026. Shaders de particules, paysage en couches, bloom et caméra interpolée adaptés au site statique, à la palette et au titre ESKIS. Terrain en volume, gestion des ressources, thème et accessibilité ajoutés.
-- Radial Orbital Timeline — jatin-yadav05 : https://21st.dev/@jatin-yadav05/components/radial-orbital-timeline . Code fourni par le propriétaire du site. Géométrie orbitale, sélection des étapes, recentrage et relations adaptés en JavaScript, dans une fenêtre accessible.
+- Radial Orbital Timeline — jatin-yadav05 : https://21st.dev/@jatin-yadav05/components/radial-orbital-timeline . Code fourni par le propriétaire du site. Géométrie orbitale, sélection des étapes, recentrage et relations adaptés en JavaScript, dans une fenêtre accessible et une page dédiée. Navigation clavier, pause, liens directs vers les étapes et réduction des animations ajoutés.
 
 - Liquid Metal Button — composant fourni par le propriétaire du site le 20 octobre 2026. Adaptation en liens et boutons HTML natifs : bordure en métal liquide, fond noir, reflets, accélération au survol, pression et onde au clic. Libellés crème contrastés, largeur adaptative, clavier, pause hors écran et réduction des animations ajoutés. Moteur : https://shaders.paper.design/liquid-metal . Le nom de l’auteur du composant n’était pas indiqué dans le code fourni.
 
