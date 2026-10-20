@@ -14,10 +14,6 @@
     window.dispatchEvent(new CustomEvent('eskis:theme',{detail:root.dataset.theme}));
   }
   applyTheme(root.dataset.theme);
-  document.querySelectorAll('.impact-button').forEach(button=>{
-    button.addEventListener('pointermove',e=>{const r=button.getBoundingClientRect();button.style.setProperty('--impact-x',`${e.clientX-r.left}px`);button.style.setProperty('--impact-y',`${e.clientY-r.top}px`)});
-    button.addEventListener('pointerleave',()=>{button.style.removeProperty('--impact-x');button.style.removeProperty('--impact-y')});
-  });
   themeButton?.addEventListener('click',()=>applyTheme(root.dataset.theme==='dark'?'light':'dark',true));
   window.addEventListener('storage',e=>{if(e.key==='eskis-theme')applyTheme(e.newValue)});
 

@@ -1,0 +1,28 @@
+/* Adapted from the Liquid Metal Button component supplied by the site owner. */
+.button.metal-button{
+  --metal-edge:2px;position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:0;overflow:hidden;
+  border:0;border-radius:100px;padding:24px 32px;min-height:72px;max-width:100%;color:#f2efe7;
+  background:conic-gradient(from 35deg,#353535,#f8f8f8 14%,#858585 22%,#181818 35%,#ededed 49%,#525252 61%,#fcfcfc 73%,#292929 88%,#b7b7b7);
+  box-shadow:0 0 0 1px #0006,0 24px 14px #00000005,0 16px 12px #00000014,0 8px 9px #0000001f,0 2px 5px #00000026;
+  font-size:16px;font-weight:500;text-align:center;text-decoration:none;touch-action:manipulation;
+  transition:transform .6s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,opacity .3s;
+}
+.metal-shader{position:absolute;inset:0;z-index:0;border-radius:inherit;overflow:hidden;pointer-events:none}
+.metal-shader canvas{position:absolute!important;inset:0;width:100%!important;height:100%!important;display:block!important;border-radius:inherit;filter:grayscale(1);pointer-events:none}
+.metal-inset{position:absolute;inset:var(--metal-edge);z-index:1;border-radius:inherit;background:linear-gradient(180deg,#202020 0%,#000 100%);box-shadow:inset 0 1px 0 #ffffff14;pointer-events:none;transition:box-shadow .2s,background .3s}
+.metal-label{position:relative;z-index:3;display:block;line-height:1.4;letter-spacing:-.015em;color:#f2efe7;text-shadow:0 1px 2px #0008;pointer-events:none;text-wrap:balance;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.metal-ripples{position:absolute;inset:var(--metal-edge);z-index:4;overflow:hidden;border-radius:inherit;pointer-events:none}
+.metal-ripple{position:absolute;width:24px;height:24px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,#ffffff8c 0%,#ffffff26 36%,transparent 70%);animation:metal-ripple .6s ease-out forwards}
+@keyframes metal-ripple{from{transform:translate(-50%,-50%) scale(0);opacity:.65}to{transform:translate(-50%,-50%) scale(4);opacity:0}}
+.button.metal-button::before,.button.metal-button::after{content:none}
+.button.metal-button:hover,.button.metal-button:focus-visible{color:#f2efe7;background-color:transparent;transform:translateY(-2px);box-shadow:0 0 0 1px #0006,0 12px 6px #0000000d,0 8px 5px #0000001a,0 4px 4px #00000026,0 1px 2px #0003}
+.button.metal-button:hover .metal-inset,.button.metal-button:focus-visible .metal-inset{box-shadow:inset 0 1px 1px #ffffff29}
+.button.metal-button:focus-visible{outline:2px solid var(--fg);outline-offset:6px}
+.button.metal-button:active,.button.metal-button.is-pressed{transform:translateY(1px) scale(.98);box-shadow:0 0 0 1px #0008,0 1px 2px #0005}
+.button.metal-button:active .metal-inset,.button.metal-button.is-pressed .metal-inset{box-shadow:inset 0 2px 4px #0006,inset 0 1px 2px #0005}
+.button.metal-button:disabled{transform:none;opacity:.5}
+.animated-intro .button.metal-button.creation-cta{min-width:215px}
+.rate-card>.metal-button{width:100%;margin-top:27px;font-size:17px;min-height:80px}
+@media(max-width:760px){.button.metal-button{min-height:66px;padding:22px;font-size:14px}.animated-intro .button.metal-button.creation-cta{min-width:210px;padding:20px 30px}.parcours-copy .parcours-cta.metal-button{padding:22px 16px}}
+@media(prefers-reduced-motion:reduce){.button.metal-button,.metal-inset,.metal-label{transition:none}.button.metal-button:hover,.button.metal-button:focus-visible,.button.metal-button:active,.button.metal-button.is-pressed{transform:none}.metal-ripple{animation:none;display:none}}
+@media(forced-colors:active){.button.metal-button{border:2px solid ButtonText;background:ButtonFace;color:ButtonText}.metal-shader,.metal-inset,.metal-ripples{display:none}.metal-label{color:ButtonText;text-shadow:none}}

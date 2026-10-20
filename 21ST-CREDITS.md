@@ -4,6 +4,8 @@
 - Horizon Hero Section — lovesickfromthe6ix : https://21st.dev/@lovesickfromthe6ix/components/horizon-hero-section . Code fourni par le propriétaire du site le 19 octobre 2026. Shaders de particules, paysage en couches, bloom et caméra interpolée adaptés au site statique, à la palette et au titre ESKIS. Terrain en volume, gestion des ressources, thème et accessibilité ajoutés.
 - Radial Orbital Timeline — jatin-yadav05 : https://21st.dev/@jatin-yadav05/components/radial-orbital-timeline . Code fourni par le propriétaire du site. Géométrie orbitale, sélection des étapes, recentrage et relations adaptés en JavaScript, dans une fenêtre accessible.
 
+- Liquid Metal Button — composant fourni par le propriétaire du site le 20 octobre 2026. Adaptation en liens et boutons HTML natifs : bordure en métal liquide, fond noir, reflets, accélération au survol, pression et onde au clic. Libellés crème contrastés, largeur adaptative, clavier, pause hors écran et réduction des animations ajoutés. Moteur : https://shaders.paper.design/liquid-metal . Le nom de l’auteur du composant n’était pas indiqué dans le code fourni.
+
 ## Réimplémentation à partir des aperçus
 Le code original de ces quatre composants n’a pas été récupéré. Leur présentation a servi de référence, selon la demande du propriétaire du site.
 - Animated Hero — Tommy Jepsen : https://21st.dev/@tommyjepsen/components/animated-hero . Composition centrée, fond à points et alternance de mots.
@@ -17,4 +19,4 @@ Le code original de ces quatre composants n’a pas été récupéré. Leur pré
 - Liquid Sculpture Hero — Guglielmo Giannattasio : https://21st.dev/@gughigug/components/liquid-sculpture-hero . Moteur de matière liquide conservé dans les ressources ; attribution intégrée au fichier.
 
 ## Bibliothèques et identité
-Three.js 0.186.1 (MIT) et GSAP 3.15.0. Les notices sont dans assets/. DM Sans sous SIL OFL, hébergée localement. Tracés du logo fournis par leur propriétaire, conservés en monochrome. Les douze créations de portfolio sont fictives et réalisées pour ce site.
+Paper Shaders 0.0.81 (Apache-2.0), Three.js 0.186.1 (MIT) et GSAP 3.15.0. Les notices sont dans assets/. DM Sans sous SIL OFL, hébergée localement. Tracés du logo fournis par leur propriétaire, conservés en monochrome. Les douze créations de portfolio sont fictives et réalisées pour ce site.
