@@ -24,7 +24,7 @@
 .process-page-actions .orbit-play{justify-self:center;display:flex;align-items:center;gap:12px;padding:13px 22px;border:1px solid var(--line);border-radius:50px;background:var(--glass);color:var(--fg);font-size:13px;min-height:48px;transition:background .3s,border-color .3s}
 .process-page-actions .orbit-play:hover{border-color:var(--fg);background:var(--panel)}
 .orbit-control-icon{font-size:16px;line-height:1}
-.process-page-actions>.metal-button{width:100%;font-size:16px}
+.process-page-actions>.metal-button{grid-column:2;width:100%;font-size:16px}
 .process-workspace.is-paused .orbital-core svg,.process-workspace.is-paused .orbital-node.is-related::before{animation-play-state:paused}
 .process-fallback{display:grid;grid-template-columns:repeat(2,1fr);gap:25px;margin-top:45px}
 .process-fallback article{padding:30px;border:1px solid var(--line);border-radius:20px}

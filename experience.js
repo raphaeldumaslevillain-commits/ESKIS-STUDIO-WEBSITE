@@ -32,7 +32,7 @@
   new IntersectionObserver(entries=>{wordVisible=entries[0].isIntersecting;startWords()},{threshold:.15}).observe(intro);
 
   const stage=document.querySelector('.tilted-stage'),belt=document.querySelector('.tilted-belt'),cards=[...belt.querySelectorAll('.tilted-card')];
-  const pause=document.querySelector('.gallery-play');let phase=1,galFrame=0,lastTime=0,galVisible=false,paused=reduced.matches,cardWidth=300;
+  let phase=1,galFrame=0,lastTime=0,galVisible=false,galleryFocused=false,cardWidth=300;
   const mod=(n,m)=>((n%m)+m)%m;
   function renderGallery(){
     cards.forEach((card,i)=>{
@@ -46,30 +46,28 @@
   }
   function resizeGallery(){cardWidth=cards[0].getBoundingClientRect().width||300;const cssWidth=getComputedStyle(cards[0]).width;cardWidth=parseFloat(cssWidth)||cardWidth;renderGallery()}
   function galleryLoop(t){
-    galFrame=0;if(!galVisible||paused||document.hidden)return;
+    galFrame=0;if(!galVisible||galleryFocused||reduced.matches||document.hidden)return;
     if(lastTime)phase=mod(phase+Math.min(40,t-lastTime)*.00013,cards.length);
     lastTime=t;renderGallery();galFrame=requestAnimationFrame(galleryLoop);
   }
-  function wakeGallery(){cancelAnimationFrame(galFrame);lastTime=0;if(galVisible&&!paused&&!document.hidden)galFrame=requestAnimationFrame(galleryLoop)}
-  function updatePause(){pause.setAttribute('aria-pressed',String(paused));pause.setAttribute('aria-label',paused?'Animer la galerie':'Mettre la galerie en pause');pause.innerHTML=paused?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z" fill="currentColor"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2"/></svg>';wakeGallery()}
-  pause.addEventListener('click',()=>{paused=!paused;updatePause()});
-  function stepGallery(delta){paused=true;phase=mod(Math.round(phase)+delta,cards.length);renderGallery();updatePause()}
-  document.querySelector('.gallery-prev').addEventListener('click',()=>stepGallery(-1));document.querySelector('.gallery-next').addEventListener('click',()=>stepGallery(1));
-  belt.addEventListener('focusin',e=>{const i=cards.indexOf(e.target.closest('.tilted-card'));if(i<0)return;paused=true;phase=i;renderGallery();updatePause()});
+  function wakeGallery(){cancelAnimationFrame(galFrame);lastTime=0;if(galVisible&&!galleryFocused&&!reduced.matches&&!document.hidden)galFrame=requestAnimationFrame(galleryLoop)}
+  function stepGallery(delta){phase=mod(Math.round(phase)+delta,cards.length);renderGallery();wakeGallery()}
+  belt.addEventListener('focusin',e=>{const i=cards.indexOf(e.target.closest('.tilted-card'));if(i<0)return;galleryFocused=true;phase=i;renderGallery();wakeGallery()});
+  belt.addEventListener('focusout',e=>{galleryFocused=belt.contains(e.relatedTarget);wakeGallery()});
   stage.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();stepGallery(e.key==='ArrowRight'?1:-1);cards[Math.round(phase)].focus({preventScroll:true})}});
   new IntersectionObserver(entries=>{galVisible=entries[0].isIntersecting;wakeGallery()},{rootMargin:'100px'}).observe(stage);
-  new ResizeObserver(resizeGallery).observe(stage);resizeGallery();updatePause();
-  reduced.addEventListener('change',()=>{if(reduced.matches){paused=true;updatePause()}startWords()});
+  new ResizeObserver(resizeGallery).observe(stage);resizeGallery();wakeGallery();
+  reduced.addEventListener('change',()=>{wakeGallery();startWords()});
 
   // Adapted from jatin-yadav05's supplied Radial Orbital Timeline:
   // angular positioning, related nodes, rotation and centering on selection.
   const process=document.getElementById('process-dialog'),nodes=[...process.querySelectorAll('.orbital-node')],system=process.querySelector('.orbital-system');
   const steps=[
-    ['On se rencontre.','Je vous écoute. Ensemble, on précise vos envies, vos objectifs et le cadre du projet.'],
-    ['Je cherche le déclic.','Je rassemble les références, j’explore plusieurs directions et je construis une intention visuelle.'],
-    ['Les idées prennent forme.','Je dessine, je compose et je développe la piste choisie en un univers graphique cohérent.'],
-    ['On affine ensemble.','Vos retours guident les derniers ajustements. Je soigne les détails et chaque déclinaison.'],
-    ['À vous de jouer.','Je prépare les fichiers finaux et les repères nécessaires pour faire vivre votre nouvelle identité.']
+    ['On se rencontre.','Nous vous écoutons. Ensemble, nous précisons vos envies, vos objectifs et le cadre du projet.'],
+    ['Nous cherchons le déclic.','Nous rassemblons les références, explorons plusieurs directions et construisons une intention visuelle.'],
+    ['Les idées prennent forme.','Nous dessinons, composons et développons la piste choisie en un univers graphique cohérent.'],
+    ['On affine ensemble.','Vos retours guident les derniers ajustements. Nous soignons les détails et chaque déclinaison.'],
+    ['À vous de jouer.','Nous préparons les fichiers finaux et les repères nécessaires pour faire vivre votre nouvelle identité.']
   ];
   let active=0,angle=-90,angleTarget=-90,orbitFrame=0,orbitTime=0,orbitAuto=false,origin;
   function renderOrbit(){
@@ -91,17 +89,15 @@
     if(orbitAuto&&!reduced.matches||Math.abs(angleTarget-angle)>.05)orbitFrame=requestAnimationFrame(orbitLoop);
   }
   function wakeOrbit(){cancelAnimationFrame(orbitFrame);orbitTime=0;if(process.open&&!document.hidden)orbitFrame=requestAnimationFrame(orbitLoop)}
-  const orbitPlay=process.querySelector('.orbit-play');
   function selectStep(i){
     active=i;orbitAuto=false;const target=-90-i/nodes.length*360;
     angleTarget=angle+mod(target-angle+180,360)-180;
-    const detail=document.getElementById('process-detail');detail.querySelector('.process-step-number').textContent=`0${i+1} / 05`;detail.querySelector('h3').textContent=steps[i][0];detail.querySelector('p').textContent=steps[i][1];
+    const detail=document.getElementById('process-detail');detail.querySelector('h3').textContent=steps[i][0];detail.querySelector('p').textContent=steps[i][1];
     const next=(i+1)%steps.length,related=detail.querySelector('[data-related-step]');related.dataset.relatedStep=String(next);related.textContent=i===4?'Revoir le début ↻':'Explorer la suite →';
-    orbitPlay.textContent='Animer l’orbite ↻';orbitPlay.setAttribute('aria-pressed','false');renderOrbit();wakeOrbit();
+    renderOrbit();wakeOrbit();
   }
   nodes.forEach((node,i)=>node.addEventListener('click',()=>selectStep(i)));
   process.querySelector('[data-related-step]').addEventListener('click',e=>selectStep(Number(e.currentTarget.dataset.relatedStep)));
-  orbitPlay.addEventListener('click',()=>{orbitAuto=!orbitAuto;orbitPlay.textContent=orbitAuto?'Mettre l’orbite en pause Ⅱ':'Animer l’orbite ↻';orbitPlay.setAttribute('aria-pressed',String(orbitAuto));wakeOrbit()});
   function openProcess(button){origin=button;if(!process.open)process.showModal();document.body.classList.add('process-open');selectStep(0);process.querySelector('.process-close').focus()}
   document.querySelectorAll('[data-open-process]').forEach(button=>button.addEventListener('click',()=>openProcess(button)));
   function openProcessFromHash(){if(location.hash==='#deroulement')openProcess(null)}

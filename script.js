@@ -63,7 +63,7 @@
   const hours=document.getElementById('hours');
   const updatePrice=()=>{
     const h=Number(hours.value);document.getElementById('hours-label').textContent=`${h} heure${h>1?'s':''}`;
-    document.getElementById('estimate-total').textContent=new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(h*30);
+    document.getElementById('estimate-total').textContent=new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(h*40);
   };
   hours?.addEventListener('input',updatePrice);
   if(hours)updatePrice();
@@ -140,17 +140,27 @@
 
   const form=document.getElementById('quote-form'),dialog=document.getElementById('brief-dialog');let brief='';
   if(form){
+    const message=form.querySelector('#message'),count=form.querySelector('[data-message-count]'),limitStatus=form.querySelector('#message-limit-status');
+    const messageLimit=1000;
+    function updateMessageCount(){
+      if(!message)return;
+      if(message.value.length>messageLimit)message.value=message.value.slice(0,messageLimit);
+      const length=message.value.length;
+      if(count)count.textContent=new Intl.NumberFormat('fr-FR').format(length);
+      if(limitStatus)limitStatus.textContent=length===messageLimit?'Limite de 1 000 caractères atteinte.':'';
+    }
+    if(message){message.maxLength=messageLimit;message.addEventListener('input',updateMessageCount);form.addEventListener('reset',()=>requestAnimationFrame(updateMessageCount));updateMessageCount()}
     const service=new URLSearchParams(location.search).get('service');
     form.querySelectorAll('[data-service]').forEach(el=>{el.checked=el.dataset.service===service});
     const selectedService=form.querySelector('[data-selected-service]');
     if(selectedService){
-      const labels={identite:'Identité visuelle',direction:'Direction artistique',edition:'Édition & print',digital:'Webdesign',packaging:'Packaging',communication:'Social design'};
+      const labels={identite:'Identité visuelle',direction:'Direction artistique',edition:'Édition & print',digital:'Webdesign',packaging:'Packaging',communication:'Illustrations',illustrations:'Illustrations'};
       selectedService.value=Object.hasOwn(labels,service)?labels[service]:'';
     }
     form.addEventListener('submit',e=>{
       e.preventDefault();if(!form.reportValidity())return;
       const data=new FormData(form),choices=data.getAll('services');
-      const notice='Démonstration : aucun message envoyé.'+(form.hasAttribute('data-hide-prices')?'':' Tarif de référence : 30 € / heure.');
+      const notice='Démonstration : aucun message envoyé.'+(form.hasAttribute('data-hide-prices')?'':' Tarif de référence : 40 € / heure.');
       brief=['ESKIS — DEMANDE DE DEVIS',notice,'',`Nom : ${data.get('name')}`,`E-mail : ${data.get('email')}`,`Projet : ${data.get('company')||'À préciser'}`,'',`Prestations : ${choices.join(', ')||'À définir ensemble'}`,...(data.has('budget')?[`Budget : ${data.get('budget')}`]:[]),`Calendrier : ${data.get('timing')||'À définir ensemble'}`,'','LE PROJET',data.get('message')].join('\n');
       document.getElementById('brief-preview').textContent=brief;dialog.showModal();dialog.querySelector('.dialog-close').focus();
     });
