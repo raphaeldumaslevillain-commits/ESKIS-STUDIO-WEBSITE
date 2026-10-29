@@ -26,6 +26,11 @@
     setOpen(card, false);
     card.classList.add('folder-ready');
     toggle.addEventListener('click', () => {
+      if (card.classList.contains('possibility-folder')) {
+        if (opened) setOpen(opened, false);
+        openPossibilities(card);
+        return;
+      }
       const open = !card.classList.contains('is-open');
       if (opened && opened !== card) setOpen(opened, false);
       setOpen(card, open);
@@ -74,4 +79,22 @@
   document.addEventListener('pointerdown', event => {
     if (opened && !opened.contains(event.target)) setOpen(opened, false);
   });
+
+  const possibilities=document.getElementById('possibilities-dialog');
+  let possibilityOrigin;
+  function openPossibilities(card){
+    if(!possibilities)return;
+    possibilityOrigin=card;card.classList.add('is-open');
+    card.querySelector('.folder-toggle').setAttribute('aria-expanded','true');
+    possibilities.showModal();document.body.classList.add('possibilities-open');
+    possibilities.querySelector('.possibilities-close').focus();
+  }
+  if(possibilities){
+    possibilities.querySelector('.possibilities-close').addEventListener('click',()=>possibilities.close());
+    possibilities.addEventListener('close',()=>{
+      document.body.classList.remove('possibilities-open');
+      if(possibilityOrigin){possibilityOrigin.classList.remove('is-open');const toggle=possibilityOrigin.querySelector('.folder-toggle');toggle.setAttribute('aria-expanded','false');toggle.focus({preventScroll:true})}
+    });
+    possibilities.addEventListener('click',event=>{if(event.target===possibilities){const r=possibilities.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)possibilities.close()}});
+  }
 })();

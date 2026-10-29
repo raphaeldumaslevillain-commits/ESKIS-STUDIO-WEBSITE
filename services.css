@@ -58,3 +58,30 @@
 .folder-file-caption{transition:opacity .3s}.folder-ready:not(.is-open) .folder-file-caption{opacity:0}
 
 .glass-folder.is-open .folder-file:hover .folder-file-paper,.glass-folder.is-open .folder-file:focus-visible .folder-file-paper{box-shadow:0 12px 30px #0004}
+
+/* Four disciplines and a luminous fifth folder for the wider creative offer. */
+@media(min-width:951px){.folder-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.folder-grid>.glass-folder{grid-column:span 2}.folder-grid>.glass-folder:nth-child(4){grid-column:2/span 2}.folder-grid>.glass-folder:nth-child(5){grid-column:4/span 2}}
+.possibility-folder::before{content:'';position:absolute;inset:8% -10% -8%;background:radial-gradient(ellipse,#f9e7ad55,transparent 70%);filter:blur(25px);pointer-events:none;animation:folder-aura 5s ease-in-out infinite}
+.possibility-folder .folder-back{filter:drop-shadow(0 0 16px #f7e2ab66) drop-shadow(0 18px 25px #0002)}
+.possibility-folder .folder-front::before{background:radial-gradient(ellipse at var(--shine-x) 0%,#fff,transparent 60%),linear-gradient(145deg,#fff7d7e6,#fffdf2f2 55%,#eedbaeef)}
+.possibility-folder .folder-name{font-size:clamp(22px,1.9vw,30px);max-width:7em}
+.possibility-folder .folder-plus{background:linear-gradient(145deg,#fff9e7,#cfb66f);color:#252218;border-color:#fff9;box-shadow:0 0 25px #ffeec855,inset 0 1px 1px #fff}
+.possibility-leaf{position:absolute;width:72%;height:61%;left:14%;top:16%;background:linear-gradient(150deg,#fffef6,#efe5cd);border:1px solid #fff9;border-radius:16px;box-shadow:0 4px 15px #0002;display:grid;place-items:start center;padding-top:20px;font-size:13px;color:#786b42;font-weight:500;transform:rotate(-7deg)}
+.possibility-leaf:nth-child(2){transform:translateY(-10px) rotate(7deg);color:#6f654d}.possibility-leaf:nth-child(3){transform:translateY(-18px) rotate(-1deg);color:#5a4b24}
+@keyframes folder-aura{50%{opacity:.45;transform:scale(.93)}}
+.possibilities-dialog{width:min(760px,calc(100% - 32px));max-width:760px;max-height:calc(100svh - 32px);padding:clamp(30px,5vw,65px);border-radius:30px;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(35px);color:var(--fg);border:1px solid var(--glass-line);box-shadow:0 0 90px #e5cd8e15,0 50px 150px #0007}
+.possibilities-dialog::backdrop{background:#0009;backdrop-filter:blur(12px)}
+.possibilities-dialog h2{font-size:clamp(37px,5vw,65px);font-weight:500;line-height:1;letter-spacing:-.065em;margin:20px 0 24px}
+.possibilities-dialog>p{font-size:17px;color:var(--muted);line-height:1.5}
+.possibilities-dialog .possibility-list{list-style:none;padding:0;margin:32px 0 36px;display:flex;flex-wrap:wrap;gap:10px}
+.possibility-list a{display:flex;align-items:center;min-height:44px;border:1px solid var(--line);padding:11px 17px;border-radius:40px;font-size:14px;background:var(--glass);transition:background .3s,color .3s,transform .3s}
+.possibility-list a:hover{background:var(--fg);color:var(--bg);transform:rotate(-2deg)}
+.possibilities-close{position:absolute;top:15px;right:15px;width:44px;height:44px;display:grid;place-items:center;font-size:28px;background:var(--glass);color:var(--fg);border:1px solid var(--line);border-radius:50%}
+body.possibilities-open{overflow:hidden}
+:root[data-theme=light] .possibility-folder::before{background:radial-gradient(ellipse,#b8a05c55,transparent 70%)}
+@media(min-width:561px) and (max-width:950px){.folder-grid>.possibility-folder{grid-column:1/-1;width:calc((100% - 55px)/2);justify-self:center}}
+@media(max-width:560px){.possibility-folder .folder-name{font-size:27px}.possibilities-dialog{border-radius:24px;padding:36px 25px}.possibilities-dialog h2{font-size:40px;margin-top:28px}.possibilities-dialog .possibility-list{gap:8px;margin:27px 0}.possibility-list a{font-size:12px;padding:10px 13px}.possibilities-dialog>p{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.possibility-folder::before{animation:none}.possibility-list a{transition:none}}
+.folder-ready:not(.folder-arrived) .possibility-leaf{opacity:0;transform:translateY(150px) rotate(-12deg)}
+.possibility-leaf{transition:transform .8s var(--ease),opacity .6s}
+:root[data-theme=light] .possibility-folder .folder-front::before{background:radial-gradient(ellipse at var(--shine-x) 0%,#fff,transparent 65%),linear-gradient(145deg,#fff7d7f5,#fffdf2 55%,#ead39df5)}

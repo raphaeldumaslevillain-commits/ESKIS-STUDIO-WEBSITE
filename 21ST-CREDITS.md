@@ -12,11 +12,16 @@ Le code original de ces quatre composants n’a pas été récupéré. Leur pré
 - Tilted Grid Hero — Ruixen UI : https://21st.dev/@ruixen.ui/components/tilted-grid-hero . Bande incurvée, perspective, défilement continu et bords estompés ; projets ESKIS, pause et navigation ajoutés.
 - Contact Form — meschacirung : https://21st.dev/@meschacirung/components/contact-form . Titre centré et formulaire dans une carte ; champs et fonctionnement adaptés à la démonstration.
 
-- Glassmorphism Folder Cards — kedhareswer : https://21st.dev/@kedhareswer/components/glass-folder-cards . Recréé à partir de l’aperçu public : forme de dossier givré, assemblage au défilement, inclinaison au pointeur, ouverture et fiches en éventail. Adapté aux six services, aux thèmes ESKIS, au clavier et au toucher. Les fiches ouvrent le formulaire de devis avec la prestation présélectionnée. Aucune fonction de gestion ou d’ajout de fichiers.
+- Glassmorphism Folder Cards — kedhareswer : https://21st.dev/@kedhareswer/components/glass-folder-cards . Recréé à partir de l’aperçu public : forme de dossier givré, assemblage au défilement, inclinaison au pointeur, ouverture et fiches en éventail. Adapté aux quatre catégories et au dossier lumineux des possibilités, aux thèmes ESKIS, au clavier et au toucher. Les fiches ouvrent le formulaire de devis avec la prestation présélectionnée. Aucune fonction de gestion ou d’ajout de fichiers.
 
 ## Ressources conservées des versions précédentes
 - LiquidGlass — manfromexistence : https://21st.dev/@manfromexistence/components/liquid-glass . Réfraction adaptée depuis le code récupéré via le MCP 21st.dev.
 - Liquid Sculpture Hero — Guglielmo Giannattasio : https://21st.dev/@gughigug/components/liquid-sculpture-hero . Moteur de matière liquide conservé dans les ressources ; attribution intégrée au fichier.
 
 ## Bibliothèques et identité
-Paper Shaders 0.0.81 (Apache-2.0), Three.js 0.186.1 (MIT) et GSAP 3.15.0. Les notices sont dans assets/. DM Sans sous SIL OFL, hébergée localement. Tracés du logo fournis par leur propriétaire, conservés en monochrome. Les douze créations de portfolio sont fictives et réalisées pour ce site.
+Paper Shaders 0.0.81 (Apache-2.0), Three.js 0.186.1 (MIT) et GSAP 3.15.0. Les notices sont dans assets/. DM Sans sous SIL OFL, hébergée localement. Tracés du logo fournis par leur propriétaire, conservés en monochrome. Les visuels du portfolio proviennent des projets fournis par le propriétaire du site. Les documents PDF ont été rendus en JPEG ; les originaux ne sont pas modifiés.
+
+## Packaging interactif
+Le module `src/packaging-viewer.js` est réalisé pour ce site avec Three.js, OrbitControls et RoundedBoxGeometry (MIT). Les faces du packaging Yves Rocher proviennent des pages 1, 2, 4 et 5 du document fourni « PACKAGING + BOUTEILLE.pdf ». Le dessus et le dessous sont laissés sans impression ; les proportions sont restituées à partir de la maquette fournie. Aucune prestation de 3D, photographie, vidéo ou motion design n’est proposée dans les services.
+
+MOKI : cinq visuels fournis le 29 octobre 2026, appliqués sans redessin sur une boîte au format confirmé de 20 × 8 × 7 cm. La face violette est reprise aux deux extrémités. Les visuels sont conservés entiers et à proportions constantes, avec le fond de papier d’origine sur les marges des faces.

@@ -154,7 +154,7 @@
     form.querySelectorAll('[data-service]').forEach(el=>{el.checked=el.dataset.service===service});
     const selectedService=form.querySelector('[data-selected-service]');
     if(selectedService){
-      const labels={identite:'Identité visuelle',direction:'Direction artistique',edition:'Édition & print',digital:'Webdesign',packaging:'Packaging',communication:'Illustrations',illustrations:'Illustrations'};
+      const labels={identite:'Identité visuelle',illustrations:'Illustrations',packaging:'Packaging',print:'Print',direction:'Direction artistique',digital:'Webdesign',interfaces:'Interfaces & UI/UX',campagnes:'Campagnes graphiques',social:'Réseaux sociaux',signaletique:'Signalétique',infographies:'Infographies',presentations:'Présentations',typographie:'Typographie',pictogrammes:'Pictogrammes',autre:'Autres créations graphiques',edition:'Print',communication:'Illustrations'};
       selectedService.value=Object.hasOwn(labels,service)?labels[service]:'';
     }
     form.addEventListener('submit',e=>{

@@ -1,11 +1,12 @@
 {
   "name": "eskis-studio-website",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "private": true,
   "type": "module",
   "scripts": {
     "build:horizon": "esbuild src/horizon.js --bundle --minify --format=esm --target=es2020 --outfile=assets/horizon.js",
-    "build:buttons": "esbuild src/metal-buttons.js --bundle --minify --format=esm --target=es2022 --outfile=assets/metal-buttons.js --legal-comments=inline"
+    "build:buttons": "esbuild src/metal-buttons.js --bundle --minify --format=esm --target=es2022 --outfile=assets/metal-buttons.js --legal-comments=inline",
+    "build:packaging": "esbuild src/packaging-viewer.js --bundle --minify --format=esm --target=es2022 --outfile=assets/packaging-viewer.js --legal-comments=inline"
   },
   "dependencies": {
     "three": "0.186.1",

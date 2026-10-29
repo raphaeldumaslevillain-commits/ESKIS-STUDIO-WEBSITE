@@ -1,0 +1,319 @@
+[
+  {
+    "slug": "gare-remarquable",
+    "name": "Gare Remarquable",
+    "category": "identite",
+    "cover": {
+      "src": "assets/projects/gare-remarquable/cover.jpg",
+      "small": "assets/projects/gare-remarquable/cover-small.jpg",
+      "width": 1600,
+      "height": 1200,
+      "alt": "Logo rouge Gare Remarquable"
+    },
+    "images": [
+      {
+        "src": "assets/projects/gare-remarquable/logo.jpg",
+        "width": 1773,
+        "height": 1772,
+        "alt": "Logo rouge Gare Remarquable"
+      },
+      {
+        "src": "assets/projects/gare-remarquable/applications.jpg",
+        "width": 1344,
+        "height": 1900,
+        "alt": "Déclinaisons du logo Gare Remarquable"
+      },
+      {
+        "src": "assets/projects/gare-remarquable/construction.jpg",
+        "width": 1344,
+        "height": 1900,
+        "alt": "Construction géométrique du logo Gare Remarquable"
+      },
+      {
+        "src": "assets/projects/gare-remarquable/inauguration.jpg",
+        "width": 1024,
+        "height": 681,
+        "alt": "Logo Gare Remarquable installé sur une façade de gare"
+      }
+    ]
+  },
+  {
+    "slug": "pelote",
+    "name": "Pelote",
+    "category": "identite",
+    "cover": {
+      "src": "assets/projects/pelote/cover.jpg",
+      "small": "assets/projects/pelote/cover-small.jpg",
+      "width": 1600,
+      "height": 1200,
+      "alt": "Identité Pelote sur des cartes"
+    },
+    "images": [
+      {
+        "src": "assets/projects/pelote/cartes.jpg",
+        "width": 1900,
+        "height": 1072,
+        "alt": "Identité Pelote sur des cartes"
+      },
+      {
+        "src": "assets/projects/pelote/typographies.jpg",
+        "width": 1900,
+        "height": 1069,
+        "alt": "Palette et typographies de l’identité Pelote"
+      },
+      {
+        "src": "assets/projects/pelote/univers.jpg",
+        "width": 1900,
+        "height": 1069,
+        "alt": "Déclinaisons et motifs de l’identité Pelote"
+      },
+      {
+        "src": "assets/projects/pelote/signature.jpg",
+        "width": 1900,
+        "height": 1069,
+        "alt": "Signature de marque Pelote"
+      },
+      {
+        "src": "assets/projects/pelote/application.jpg",
+        "width": 1683,
+        "height": 934,
+        "alt": "Identité Pelote appliquée à une interface mobile"
+      }
+    ]
+  },
+  {
+    "slug": "illustration-01",
+    "name": "Illustration 01",
+    "category": "illustrations",
+    "cover": {
+      "src": "assets/projects/illustration-01/cover.jpg",
+      "small": "assets/projects/illustration-01/cover-small.jpg",
+      "width": 1600,
+      "height": 1200,
+      "alt": "Illustration 01 fournie par ESKIS"
+    },
+    "images": [
+      {
+        "src": "assets/projects/illustration-01/illustration.jpg",
+        "width": 1762,
+        "height": 1592,
+        "alt": "Illustration 01 fournie par ESKIS"
+      }
+    ]
+  },
+  {
+    "slug": "illustration-02",
+    "name": "Illustration 02",
+    "category": "illustrations",
+    "cover": {
+      "src": "assets/projects/illustration-02/cover.jpg",
+      "small": "assets/projects/illustration-02/cover-small.jpg",
+      "width": 1600,
+      "height": 1200,
+      "alt": "Illustration 02 fournie par ESKIS"
+    },
+    "images": [
+      {
+        "src": "assets/projects/illustration-02/illustration.jpg",
+        "width": 1434,
+        "height": 1592,
+        "alt": "Illustration 02 fournie par ESKIS"
+      }
+    ]
+  },
+  {
+    "slug": "yves-rocher",
+    "name": "Yves Rocher",
+    "category": "packaging",
+    "cover": {
+      "src": "assets/projects/yves-rocher/cover.jpg",
+      "small": "assets/projects/yves-rocher/cover-small.jpg",
+      "width": 1600,
+      "height": 1200,
+      "alt": "Packaging et flacon Yves Rocher Monoï de Tahiti"
+    },
+    "images": [
+      {
+        "src": "assets/projects/yves-rocher/mockup.jpg",
+        "width": 1900,
+        "height": 1425,
+        "alt": "Packaging et flacon Yves Rocher Monoï de Tahiti"
+      },
+      {
+        "src": "assets/projects/yves-rocher/front.jpg",
+        "width": 1010,
+        "height": 1800,
+        "alt": "Face avant du packaging Yves Rocher"
+      },
+      {
+        "src": "assets/projects/yves-rocher/back.jpg",
+        "width": 1010,
+        "height": 1800,
+        "alt": "Face arrière du packaging Yves Rocher"
+      }
+    ],
+    "viewer": {
+      "dimensions": [
+        1.6,
+        2.854,
+        0.86
+      ],
+      "faces": {
+        "front": "assets/projects/yves-rocher/front.jpg",
+        "right": "assets/projects/yves-rocher/right.jpg",
+        "back": "assets/projects/yves-rocher/back.jpg",
+        "left": "assets/projects/yves-rocher/left.jpg"
+      },
+      "paper": "#faf7eb",
+      "foldColor": "#d9cda4"
+    }
+  },
+  {
+    "slug": "moki",
+    "name": "MOKI",
+    "category": "packaging",
+    "cover": {
+      "src": "assets/projects/moki/cover.jpg",
+      "small": "assets/projects/moki/cover-small.jpg",
+      "width": 1600,
+      "height": 1200,
+      "alt": "Boîte de macarons MOKI"
+    },
+    "images": [
+      {
+        "src": "assets/projects/moki/front.jpg",
+        "width": 938,
+        "height": 327,
+        "alt": "Face illustrée de la boîte MOKI"
+      },
+      {
+        "src": "assets/projects/moki/back.jpg",
+        "width": 939,
+        "height": 323,
+        "alt": "Dos de la boîte MOKI"
+      },
+      {
+        "src": "assets/projects/moki/top.jpg",
+        "width": 938,
+        "height": 228,
+        "alt": "Face parcours et compétences de la boîte MOKI"
+      },
+      {
+        "src": "assets/projects/moki/bottom.jpg",
+        "width": 941,
+        "height": 229,
+        "alt": "Face expériences et passions de la boîte MOKI"
+      }
+    ],
+    "viewer": {
+      "dimensions": [
+        3,
+        1.05,
+        1.2
+      ],
+      "dimensionsCm": {
+        "longueur": 20,
+        "largeur": 8,
+        "hauteur": 7
+      },
+      "faces": {
+        "front": "assets/projects/moki/texture-front.jpg",
+        "back": "assets/projects/moki/texture-back.jpg",
+        "top": "assets/projects/moki/texture-top.jpg",
+        "bottom": "assets/projects/moki/texture-bottom.jpg",
+        "left": "assets/projects/moki/texture-end.jpg",
+        "right": "assets/projects/moki/texture-end.jpg"
+      },
+      "paper": "#ffeeda",
+      "foldColor": "#ffeeda"
+    }
+  },
+  {
+    "slug": "gare-de-lyon",
+    "name": "Gare de Lyon",
+    "category": "print",
+    "cover": {
+      "src": "assets/projects/gare-de-lyon/cover.jpg",
+      "small": "assets/projects/gare-de-lyon/cover-small.jpg",
+      "width": 1600,
+      "height": 1200,
+      "alt": "Livret imprimé consacré à Paris-Gare de Lyon"
+    },
+    "images": [
+      {
+        "src": "assets/projects/gare-de-lyon/livret.jpg",
+        "width": 1900,
+        "height": 1267,
+        "alt": "Livret imprimé consacré à Paris-Gare de Lyon"
+      },
+      {
+        "src": "assets/projects/gare-de-lyon/ouverture.jpg",
+        "width": 1900,
+        "height": 983,
+        "alt": "Double page d’ouverture du livret Gare de Lyon"
+      },
+      {
+        "src": "assets/projects/gare-de-lyon/details.jpg",
+        "width": 1900,
+        "height": 983,
+        "alt": "Double page de détails architecturaux"
+      },
+      {
+        "src": "assets/projects/gare-de-lyon/chapitre.jpg",
+        "width": 1900,
+        "height": 983,
+        "alt": "Ouverture de chapitre du livret"
+      },
+      {
+        "src": "assets/projects/gare-de-lyon/rencontres.jpg",
+        "width": 1900,
+        "height": 983,
+        "alt": "Composition de portraits et de photographies dans le livret"
+      }
+    ]
+  },
+  {
+    "slug": "stand-guerlain",
+    "name": "Stand Guerlain",
+    "category": "print",
+    "cover": {
+      "src": "assets/projects/stand-guerlain/cover.jpg",
+      "small": "assets/projects/stand-guerlain/cover-small.jpg",
+      "width": 1600,
+      "height": 1200,
+      "alt": "Vue d’ensemble de la scénographie du stand"
+    },
+    "images": [
+      {
+        "src": "assets/projects/stand-guerlain/stand.jpg",
+        "width": 1900,
+        "height": 1336,
+        "alt": "Vue d’ensemble de la scénographie du stand"
+      },
+      {
+        "src": "assets/projects/stand-guerlain/installation.jpg",
+        "width": 1900,
+        "height": 1425,
+        "alt": "Stand installé, vue d’ensemble"
+      },
+      {
+        "src": "assets/projects/stand-guerlain/espace.jpg",
+        "width": 1425,
+        "height": 1900,
+        "alt": "Vue de l’espace et des panneaux imprimés"
+      },
+      {
+        "src": "assets/projects/stand-guerlain/arc.jpg",
+        "width": 1900,
+        "height": 1652,
+        "alt": "Composition imprimée autour de l’Arc de Triomphe"
+      },
+      {
+        "src": "assets/projects/stand-guerlain/tour.jpg",
+        "width": 1825,
+        "height": 1900,
+        "alt": "Composition imprimée autour de la tour Eiffel"
+      }
+    ]
+  }
+]
