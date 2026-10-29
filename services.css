@@ -84,6 +84,7 @@ body.possibilities-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.possibility-folder::before{animation:none}.possibility-list a{transition:none}}
 .folder-ready:not(.folder-arrived) .possibility-leaf{opacity:0;transform:translateY(150px) rotate(-12deg)}
 .possibility-leaf{transition:transform .8s var(--ease),opacity .6s}
+.possibilities-dialog .possibility-list{justify-content:center}
 :root[data-theme=light] .possibility-folder .folder-front::before{background:radial-gradient(ellipse at var(--shine-x) 0%,#fff,transparent 65%),linear-gradient(145deg,#fff7d7f5,#fffdf2 55%,#ead39df5)}
 
 /* Two real projects per folder: full cards, independent links, balanced spacing. */

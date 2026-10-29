@@ -22,3 +22,6 @@ Références 21st.dev, licences et provenance des composants dans `21ST-CREDITS.
 
 ## Ajustements V12
 Deux projets cliquables par dossier sur l’accueil et les services. Illustrations sans marges ajoutées et titre au survol de la galerie. Pelote : sept slides du PDF, dans l’ordre et bord à bord. Les deux vues 3D ont un fond transparent. Format MOKI corrigé : 20 × 7 × 5 cm ; couvercle, base et grands côtés sont réaffectés selon les proportions des visuels. Yves Rocher : profondeur augmentée, petits côtés inversés, visuels à plat du recto/verso retirés de la galerie.
+
+## Ajustements V13
+Boutons centrés dans le dossier des possibilités et texte « Que souhaitez-vous ? ». Les deux formulaires proposent un choix unique Particulier / Entreprise, repris dans le brief téléchargeable. La couverture Gare Remarquable utilise la photo fournie de la plaque installée, sans modifier les visuels de sa galerie.
