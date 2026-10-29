@@ -44,3 +44,17 @@
 .real-project-gallery.gallery-continuous{display:block;margin:0;width:100%;max-width:none;gap:0}
 .real-project-gallery.gallery-continuous figure{margin:0;padding:0;border:0;border-radius:0;background:transparent;width:100%;max-width:none}
 .real-project-gallery.gallery-continuous img{display:block;width:100%;height:auto;max-height:none;margin:0;padding:0;border-radius:0}
+
+/* Visible return control and a theme-aware preview of the following project. */
+.project-back{width:64px;height:64px;justify-content:center;border:1px solid var(--line);border-radius:50%;background:var(--glass);transition:background .3s,color .3s}
+.project-back svg{width:38px;height:38px;transition:transform .3s var(--ease)}
+.project-back:hover{background:var(--fg);color:var(--bg)}
+.project-back:hover svg{transform:translateX(-4px)}
+.real-project-next{position:relative;isolation:isolate;overflow:hidden;padding-top:0;padding-bottom:0;background:var(--bg)}
+.real-project-next .next-project-image{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center 45%;filter:grayscale(1) contrast(1.2) brightness(.4);opacity:.6;pointer-events:none;transition:transform .9s var(--ease)}
+.real-project-next::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,color-mix(in srgb,var(--bg) 80%,transparent),color-mix(in srgb,var(--bg) 15%,transparent))}
+.real-project-next>a{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;min-height:clamp(250px,28vw,420px);padding:50px 0}
+.real-project-next:has(a:hover) .next-project-image{transform:scale(1.035)}
+:root[data-theme=light] .real-project-next .next-project-image{filter:grayscale(1) contrast(.7) brightness(1.35);opacity:.25}
+@media(max-width:760px){.project-back{width:54px;height:54px}.project-back svg{width:34px;height:34px}.real-project-next>a{min-height:260px;padding:38px 0}}
+@media(prefers-reduced-motion:reduce){.project-back,.project-back svg,.real-project-next .next-project-image{transition:none}.project-back:hover svg,.real-project-next:has(a:hover) .next-project-image{transform:none}}

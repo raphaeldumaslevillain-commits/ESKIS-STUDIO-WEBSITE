@@ -25,3 +25,6 @@ Deux projets cliquables par dossier sur l’accueil et les services. Illustratio
 
 ## Ajustements V13
 Boutons centrés dans le dossier des possibilités et texte « Que souhaitez-vous ? ». Les deux formulaires proposent un choix unique Particulier / Entreprise, repris dans le brief téléchargeable. La couverture Gare Remarquable utilise la photo fournie de la plaque installée, sans modifier les visuels de sa galerie.
+
+## Ajustements V14
+Galerie à format unique 4:3, noir et blanc contrasté et couleur au survol ou au focus clavier. Catégories retirées des en-têtes de projet, retour par flèche, image du projet suivant en fond monochrome adaptée au thème. À la demande du propriétaire, l’envoi par e-mail est laissé de côté : le formulaire conserve la préparation et le téléchargement du brief, sans transmission.
