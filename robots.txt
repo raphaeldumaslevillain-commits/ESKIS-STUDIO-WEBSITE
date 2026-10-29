@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://raphaeldumaslevillain-commits.github.io/ESKIS-STUDIO-WEBSITE/sitemap.xml
+Sitemap: https://studio-eskis.fr/sitemap.xml

@@ -76,6 +76,13 @@
     if (target?.classList.contains('glass-folder')) target.classList.add('folder-arrived');
   } else cards.forEach(card => card.classList.add('folder-arrived'));
 
+  document.addEventListener('eskis:restore-folder',event=>{
+    const card=cards.find(item=>item.id===event.detail?.folder);
+    if(!card||card.classList.contains('possibility-folder'))return;
+    if(opened&&opened!==card)setOpen(opened,false);
+    card.classList.add('folder-arrived');setOpen(card,true);
+  });
+
   document.addEventListener('pointerdown', event => {
     if (opened && !opened.contains(event.target)) setOpen(opened, false);
   });

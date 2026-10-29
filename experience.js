@@ -93,11 +93,9 @@
     active=i;orbitAuto=false;const target=-90-i/nodes.length*360;
     angleTarget=angle+mod(target-angle+180,360)-180;
     const detail=document.getElementById('process-detail');detail.querySelector('h3').textContent=steps[i][0];detail.querySelector('p').textContent=steps[i][1];
-    const next=(i+1)%steps.length,related=detail.querySelector('[data-related-step]');related.dataset.relatedStep=String(next);related.textContent=i===4?'Revoir le début ↻':'Explorer la suite →';
     renderOrbit();wakeOrbit();
   }
   nodes.forEach((node,i)=>node.addEventListener('click',()=>selectStep(i)));
-  process.querySelector('[data-related-step]').addEventListener('click',e=>selectStep(Number(e.currentTarget.dataset.relatedStep)));
   function openProcess(button){origin=button;if(!process.open)process.showModal();document.body.classList.add('process-open');selectStep(0);process.querySelector('.process-close').focus()}
   document.querySelectorAll('[data-open-process]').forEach(button=>button.addEventListener('click',()=>openProcess(button)));
   function openProcessFromHash(){if(location.hash==='#deroulement')openProcess(null)}

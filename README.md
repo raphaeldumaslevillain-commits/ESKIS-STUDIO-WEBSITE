@@ -1,30 +1,32 @@
 # ESKIS — When creativity connect us.
 
-Portfolio statique en HTML, CSS et JavaScript : 16 pages, 8 projets issus des fichiers fournis. Ressources et bibliothèques hébergées localement.
+Portfolio statique en HTML, CSS et JavaScript : 16 pages, 8 projets issus des fichiers fournis. Ressources, polices et bibliothèques hébergées localement. Domaine préparé : https://studio-eskis.fr/.
 
-## Expérience
-Ouverture Horizon, typographie animée, galerie des projets et formulaire limité à 1 000 caractères. Quatre catégories : Illustrations, Identité visuelle, Packaging et Print. Le cinquième dossier lumineux ouvre une fenêtre de possibilités graphiques. Tarif : 40 €/h. Le vocabulaire présente ESKIS comme une agence. Menu plein écran, thème noir ou crème et typographie sans serif.
+## État de livraison
+Version 5.0.0, préparation du 30 octobre 2026. Le code est prêt à être servi par un hébergement statique. La mise en service officielle dépend encore du domaine/HTTPS, de l’activation et d’un test concluant du formulaire, et des informations légales réelles. Consulter PUBLICATION.md pour les réglages et les vérifications restantes.
 
-## Projets et visuels
-`projects.json` contient les titres, catégories, galeries et configuration des packagings. Aucune description de projet n’est ajoutée. Les images sélectionnées sont converties en JPEG optimisés, avec des couvertures de 800 et 1 600 px de large pour les listes. Les fichiers de travail AI, PSD et InDesign ainsi que les PDF lourds ne sont pas copiés dans le site. Les originaux sont conservés dans les dossiers de l’utilisateur.
+## Navigation et expérience
+Logo ESKIS, liens directs des pages sur ordinateur, changement de thème et bouton burger. Menu plein écran sur mobile. Le retour d’un projet conserve sa page d’origine, le dossier ouvert et la position de défilement. Un parcours entre plusieurs projets conserve ce point de retour. La préférence de thème et ce contexte temporaire restent dans le navigateur.
 
-## Packaging
-`src/packaging-viewer.js` construit la boîte à partir de ses faces. Le module compilé `assets/packaging-viewer.js` est chargé uniquement sur les pages qui possèdent une vue 3D. Rotation à la souris ou au toucher, zoom, commandes clavier, réinitialisation et plein écran. Rendu à la demande, textures limitées, arrêt hors écran et image de repli. Les surfaces sans visuel source restent sans impression.
+Ouverture Horizon, titres animés, dossiers de services, galerie 4:3 monochrome qui retrouve ses couleurs au survol ou au focus, formulaire limité à 1 000 caractères. Quatre catégories : Illustrations, Identité visuelle, Packaging et Print ; un cinquième dossier propose les autres possibilités graphiques. Aucun estimateur ou sélecteur de budget. Le tarif apparaît uniquement en petit avec les deux formulaires.
 
-## Modifier et publier
-Servir ce dossier avec un serveur HTTP statique. Pour GitHub Pages : branche `main`, dossier `/`. Le site compilé fonctionne sans installation ni CDN. Pour reconstruire les modules : `npm install`, puis `npm run build:horizon`, `npm run build:buttons` ou `npm run build:packaging`. Les versions des bibliothèques sont fixées dans `package.json`. Les pages, styles et scripts restent directement éditables.
+## Projets
+projects.json contient les médias et les réglages des packagings ; project-copy.json contient les textes « Le projet » et « L’intention créative », rédigés à partir des briefs du propriétaire. Les pages présentent au maximum deux visuels, sauf Pelote qui conserve ses sept slides d’origine dans l’ordre, au format 16:9, sans intervalle et avec les arrondis uniquement aux extrémités de l’ensemble. Les grandes images d’ouverture gardent leur proportion ; les visuels secondaires utilisent un cadre 4:3 commun avec un survol discret.
 
-## Contact
-Le formulaire prépare un brief téléchargeable ; il n’envoie aucun message. Les coordonnées réelles et un service d’envoi restent à connecter avant la mise en service commerciale. La page « Un projet ? » ne présente pas de prix. Les prestations sont conservées dans le brief et le texte est limité à 1 000 caractères avec un compteur visible.
+Les images sont des JPEG optimisés ; les fichiers de travail AI, PSD, InDesign et les PDF lourds ne sont pas publiés. Les originaux restent dans les dossiers de l’utilisateur. Sources factuelles et distinction entre données publiques et briefs : PROJECT-SOURCES.md.
 
-## Sources et crédits
-Références 21st.dev, licences et provenance des composants dans `21ST-CREDITS.md`. Tracés du logo ESKIS fournis par leur propriétaire. DM Sans hébergée localement. Le parcours BNP Paribas, SNCF, Gare Remarquable et les plus de 100 clients a été communiqué par le propriétaire du site. Le thème est la seule préférence stockée ; aucun outil de suivi ajouté.
+## Packaging et footer
+Les vues 3D se chargent uniquement sur les pages concernées. Rotation, zoom, clavier, réinitialisation, plein écran, fond transparent et image de repli. MOKI : 20 × 7 × 5 cm.
 
-## Ajustements V12
-Deux projets cliquables par dossier sur l’accueil et les services. Illustrations sans marges ajoutées et titre au survol de la galerie. Pelote : sept slides du PDF, dans l’ordre et bord à bord. Les deux vues 3D ont un fond transparent. Format MOKI corrigé : 20 × 7 × 5 cm ; couvercle, base et grands côtés sont réaffectés selon les proportions des visuels. Yves Rocher : profondeur augmentée, petits côtés inversés, visuels à plat du recto/verso retirés de la galerie.
+Le footer adapte « Halftone Wordmark Footer » fourni par le propriétaire : masque issu des véritables tracés du logo ESKIS, trame réactive au pointeur, ressorts et onde au clic. Arrêt hors écran et prise en compte de la réduction des animations. Les liens et contrôles restent en HTML natif. Le favicon reprend le « e » et l’étoile du logo, avec exports SVG, PNG, ICO et icône Apple.
 
-## Ajustements V13
-Boutons centrés dans le dossier des possibilités et texte « Que souhaitez-vous ? ». Les deux formulaires proposent un choix unique Particulier / Entreprise, repris dans le brief téléchargeable. La couverture Gare Remarquable utilise la photo fournie de la plaque installée, sans modifier les visuels de sa galerie.
+## Formulaire
+contact.js envoie les champs à https://formsubmit.co/ajax/contact@studio-eskis.fr, avec sujet ESKIS, réponse vers l’e-mail du visiteur et présentation en tableau. Aucun secret n’est présent dans les sources. La confirmation ne s’affiche qu’après acceptation par le service. Une erreur conserve le message et propose un e-mail prérempli. Ce lien de secours ouvre la messagerie du visiteur ; il ne garantit pas une livraison automatique.
 
-## Ajustements V14
-Galerie à format unique 4:3, noir et blanc contrasté et couleur au survol ou au focus clavier. Catégories retirées des en-têtes de projet, retour par flèche, image du projet suivant en fond monochrome adaptée au thème. À la demande du propriétaire, l’envoi par e-mail est laissé de côté : le formulaire conserve la préparation et le téléchargement du brief, sans transmission.
+Le test réel du 30 octobre 2026 a reçu une erreur HTTP 521 de FormSubmit : aucune réception n’a été confirmée. Ne pas présenter l’envoi comme opérationnel avant activation du destinataire et réception vérifiée d’un message test.
+
+## Développement
+Servir ce dossier par HTTP, par exemple `python3 -m http.server 4381 --bind 127.0.0.1`. Le site compilé fonctionne sans installation ni CDN. Pour reconstruire les modules : `npm install`, puis `npm run build:horizon`, `npm run build:buttons` ou `npm run build:packaging`. Versions fixées dans package.json. Les pages, styles et scripts sont directement éditables.
+
+## Sources et licences
+Références 21st.dev, licences et attributions dans 21ST-CREDITS.md. Logo fourni par son propriétaire. DM Sans sous SIL Open Font License. Aucun outil publicitaire ou de mesure d’audience ajouté.

@@ -27,3 +27,9 @@ Le module `src/packaging-viewer.js` est réalisé pour ce site avec Three.js, Or
 MOKI : cinq visuels fournis le 29 octobre 2026, appliqués sans redessin sur une boîte au format corrigé de 20 × 7 × 5 cm. La face violette est reprise aux deux extrémités. Les visuels sont conservés entiers et à proportions constantes, avec le fond de papier d’origine sur les marges des faces.
 
 V12 : les sept slides Pelote sont présentées dans l’ordre du PDF source, sans séparation. Les dossiers contiennent deux projets réels cliquables chacun. MOKI : les panneaux 20 × 7 cm forment le couvercle et la base, les panneaux 20 × 5 cm les deux grands côtés, et le panneau violet les deux extrémités. La profondeur Yves Rocher est ajustée visuellement ; aucune dimension physique n’a été fournie. Les petits côtés sont intervertis.
+
+## Halftone Wordmark Footer
+Code fourni par le propriétaire le 30 octobre 2026, adapté en JavaScript natif. Le masque typographique est remplacé par les tracés SVG exacts du logo ESKIS. Trame par couverture alpha, ressorts au pointeur, onde au clic et variations de couleur ; arrêt hors écran et préférence de réduction des animations pris en charge. Les liens restent des éléments HTML natifs.
+
+## Halftone Wordmark Footer
+Code fourni par le propriétaire le 30 octobre 2026, adapté en JavaScript natif. Le masque typographique est remplacé par les tracés SVG exacts du logo ESKIS. Trame par couverture alpha, ressorts au pointeur, onde au clic et variations de couleur ; arrêt hors écran et préférence de réduction des animations pris en charge. Les liens restent des éléments HTML natifs.

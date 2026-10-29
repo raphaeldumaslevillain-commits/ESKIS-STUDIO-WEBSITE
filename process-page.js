@@ -3,7 +3,6 @@
   const host=document.querySelector('[data-orbital-process]');if(!host)return;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)'),system=host.querySelector('.orbital-system');
   const nodes=[...host.querySelectorAll('.orbital-node')],panel=host.querySelector('[role=tabpanel]');
-  const next=host.querySelector('[data-process-next]');
   const steps=[
     ['On se rencontre.','Nous vous écoutons. Ensemble, nous précisons vos envies, vos objectifs et le cadre du projet.'],
     ['Nous cherchons le déclic.','Nous rassemblons les références, explorons plusieurs directions et construisons une intention visuelle.'],
@@ -51,7 +50,6 @@
     });
     panel.setAttribute('aria-labelledby',nodes[active].id);
     panel.querySelector('h2').textContent=steps[active][0];panel.querySelector('p').textContent=steps[active][1];
-    next.textContent=active===nodes.length-1?'Reprendre au début':'Étape suivante';
     if(updateHash)history.replaceState(null,'',`#${nodes[active].id}`);
     if(moveFocus)nodes[active].focus({preventScroll:true});
     wake();
@@ -67,7 +65,6 @@
       if(selected!==undefined){event.preventDefault();select(selected,true,true)}
     });
   });
-  next.addEventListener('click',()=>select(active+1));
   system.addEventListener('pointerenter',()=>{hover=true;wake()});
   system.addEventListener('pointerleave',()=>{hover=false;wake()});
   system.addEventListener('focusin',()=>{focus=true;wake()});

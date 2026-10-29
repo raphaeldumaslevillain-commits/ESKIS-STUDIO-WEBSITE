@@ -20,13 +20,13 @@
   const menu=document.querySelector('.menu-toggle'),nav=document.getElementById('main-nav');
   if(nav)nav.inert=true;
   function closeMenu(){
-    menu?.setAttribute('aria-expanded','false');nav?.classList.remove('is-open');if(nav)nav.inert=true;
+    menu?.setAttribute('aria-expanded','false');menu?.setAttribute('aria-label','Ouvrir le menu');document.querySelector('.header-pages')?.removeAttribute('inert');nav?.classList.remove('is-open');if(nav)nav.inert=true;
     document.body.classList.remove('menu-open');document.querySelector('main').inert=false;document.querySelector('.site-footer').inert=false;
   }
   menu?.addEventListener('click',()=>{
     const open=menu.getAttribute('aria-expanded')!=='true';
     if(!open){closeMenu();return}
-    menu.setAttribute('aria-expanded','true');nav.inert=false;nav.classList.add('is-open');document.body.classList.add('menu-open');
+    menu.setAttribute('aria-expanded','true');menu.setAttribute('aria-label','Fermer le menu');document.querySelector('.header-pages')?.setAttribute('inert','');nav.inert=false;nav.classList.add('is-open');document.body.classList.add('menu-open');
     document.querySelector('main').inert=true;document.querySelector('.site-footer').inert=true;
     nav.querySelector('a')?.focus({preventScroll:true});
   });
@@ -47,26 +47,6 @@
     }),{threshold:.04});
     document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
   }else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
-
-  const filters=document.querySelectorAll('[data-filter]');
-  filters.forEach(button=>button.addEventListener('click',()=>{
-    const value=button.dataset.filter;let count=0;
-    filters.forEach(item=>{const selected=item===button;item.classList.toggle('active',selected);item.setAttribute('aria-pressed',String(selected))});
-    document.querySelectorAll('.portfolio-grid .project-card').forEach(card=>{
-      const visible=value==='all'||card.dataset.category.split(' ').includes(value);
-      card.hidden=!visible;if(visible){count++;card.classList.add('visible')}
-    });
-    document.querySelector('.portfolio-grid')?.classList.toggle('filtered',value!=='all');
-    const status=document.getElementById('filter-status');if(status)status.textContent=`${count} projet${count>1?'s':''} affiché${count>1?'s':''}`;
-  }));
-
-  const hours=document.getElementById('hours');
-  const updatePrice=()=>{
-    const h=Number(hours.value);document.getElementById('hours-label').textContent=`${h} heure${h>1?'s':''}`;
-    document.getElementById('estimate-total').textContent=new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(h*40);
-  };
-  hours?.addEventListener('input',updatePrice);
-  if(hours)updatePrice();
 
   // LiquidGlass's rounded rectangle SDF and smooth-step displacement,
   // adapted to a static control surface rather than a draggable lens.
@@ -138,38 +118,10 @@
     addEventListener('scroll',()=>cursor?.classList.remove('visible'),{passive:true});
   }
 
-  const form=document.getElementById('quote-form'),dialog=document.getElementById('brief-dialog');let brief='';
-  if(form){
-    const message=form.querySelector('#message'),count=form.querySelector('[data-message-count]'),limitStatus=form.querySelector('#message-limit-status');
-    const messageLimit=1000;
-    function updateMessageCount(){
-      if(!message)return;
-      if(message.value.length>messageLimit)message.value=message.value.slice(0,messageLimit);
-      const length=message.value.length;
-      if(count)count.textContent=new Intl.NumberFormat('fr-FR').format(length);
-      if(limitStatus)limitStatus.textContent=length===messageLimit?'Limite de 1 000 caractères atteinte.':'';
-    }
-    if(message){message.maxLength=messageLimit;message.addEventListener('input',updateMessageCount);form.addEventListener('reset',()=>requestAnimationFrame(updateMessageCount));updateMessageCount()}
-    const service=new URLSearchParams(location.search).get('service');
-    form.querySelectorAll('[data-service]').forEach(el=>{el.checked=el.dataset.service===service});
-    const selectedService=form.querySelector('[data-selected-service]');
-    if(selectedService){
-      const labels={identite:'Identité visuelle',illustrations:'Illustrations',packaging:'Packaging',print:'Print',direction:'Direction artistique',digital:'Webdesign',interfaces:'Interfaces & UI/UX',campagnes:'Campagnes graphiques',social:'Réseaux sociaux',signaletique:'Signalétique',infographies:'Infographies',presentations:'Présentations',typographie:'Typographie',pictogrammes:'Pictogrammes',autre:'Autres créations graphiques',edition:'Print',communication:'Illustrations'};
-      selectedService.value=Object.hasOwn(labels,service)?labels[service]:'';
-    }
-    form.addEventListener('submit',e=>{
-      e.preventDefault();if(!form.reportValidity())return;
-      const data=new FormData(form),choices=data.getAll('services');
-      const notice='Démonstration : aucun message envoyé.'+(form.hasAttribute('data-hide-prices')?'':' Tarif de référence : 40 € / heure.');
-      brief=['ESKIS — DEMANDE DE DEVIS',notice,'',`Vous êtes : ${data.get('client_type')||'À préciser'}`,`Nom : ${data.get('name')}`,`E-mail : ${data.get('email')}`,`Projet : ${data.get('company')||'À préciser'}`,'',`Prestations : ${choices.join(', ')||'À définir ensemble'}`,...(data.has('budget')?[`Budget : ${data.get('budget')}`]:[]),`Calendrier : ${data.get('timing')||'À définir ensemble'}`,'','LE PROJET',data.get('message')].join('\n');
-      document.getElementById('brief-preview').textContent=brief;dialog.showModal();dialog.querySelector('.dialog-close').focus();
-    });
-    dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());dialog.querySelector('.dialog-back').addEventListener('click',()=>dialog.close());
-    dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
-    document.getElementById('download-brief').addEventListener('click',()=>{
-      const url=URL.createObjectURL(new Blob(['\uFEFF'+brief],{type:'text/plain;charset=utf-8'})),link=document.createElement('a');link.href=url;link.download='mon-brief-eskis.txt';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
-    });
-  }
+  const form=document.getElementById('quote-form');
+  if(form)import('./contact.js?v=15.2').then(module=>module.initContact(form)).catch(()=>{
+    // Native POST remains available if the progressive enhancement fails to load.
+  });
   if(document.getElementById('sculpture')){
     import('./assets/scene.js').then(module=>module.initSculpture()).catch(()=>{document.getElementById('sculpture').classList.add('art-fallback')});
   }
