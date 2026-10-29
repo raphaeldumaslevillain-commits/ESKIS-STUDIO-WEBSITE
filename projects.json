@@ -50,36 +50,49 @@
     },
     "images": [
       {
-        "src": "assets/projects/pelote/cartes.jpg",
-        "width": 1900,
-        "height": 1072,
-        "alt": "Identité Pelote sur des cartes"
+        "src": "assets/projects/pelote/slide-01.jpg",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Identité visuelle Pelote — slide 1 sur 7"
       },
       {
-        "src": "assets/projects/pelote/typographies.jpg",
-        "width": 1900,
-        "height": 1069,
-        "alt": "Palette et typographies de l’identité Pelote"
+        "src": "assets/projects/pelote/slide-02.jpg",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Identité visuelle Pelote — slide 2 sur 7"
       },
       {
-        "src": "assets/projects/pelote/univers.jpg",
-        "width": 1900,
-        "height": 1069,
-        "alt": "Déclinaisons et motifs de l’identité Pelote"
+        "src": "assets/projects/pelote/slide-03.jpg",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Identité visuelle Pelote — slide 3 sur 7"
       },
       {
-        "src": "assets/projects/pelote/signature.jpg",
-        "width": 1900,
-        "height": 1069,
-        "alt": "Signature de marque Pelote"
+        "src": "assets/projects/pelote/slide-04.jpg",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Identité visuelle Pelote — slide 4 sur 7"
       },
       {
-        "src": "assets/projects/pelote/application.jpg",
-        "width": 1683,
-        "height": 934,
-        "alt": "Identité Pelote appliquée à une interface mobile"
+        "src": "assets/projects/pelote/slide-05.jpg",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Identité visuelle Pelote — slide 5 sur 7"
+      },
+      {
+        "src": "assets/projects/pelote/slide-06.jpg",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Identité visuelle Pelote — slide 6 sur 7"
+      },
+      {
+        "src": "assets/projects/pelote/slide-07.jpg",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Identité visuelle Pelote — slide 7 sur 7"
       }
-    ]
+    ],
+    "galleryLayout": "continuous"
   },
   {
     "slug": "illustration-01",
@@ -89,7 +102,7 @@
       "src": "assets/projects/illustration-01/cover.jpg",
       "small": "assets/projects/illustration-01/cover-small.jpg",
       "width": 1600,
-      "height": 1200,
+      "height": 1446,
       "alt": "Illustration 01 fournie par ESKIS"
     },
     "images": [
@@ -109,7 +122,7 @@
       "src": "assets/projects/illustration-02/cover.jpg",
       "small": "assets/projects/illustration-02/cover-small.jpg",
       "width": 1600,
-      "height": 1200,
+      "height": 1776,
       "alt": "Illustration 02 fournie par ESKIS"
     },
     "images": [
@@ -138,31 +151,19 @@
         "width": 1900,
         "height": 1425,
         "alt": "Packaging et flacon Yves Rocher Monoï de Tahiti"
-      },
-      {
-        "src": "assets/projects/yves-rocher/front.jpg",
-        "width": 1010,
-        "height": 1800,
-        "alt": "Face avant du packaging Yves Rocher"
-      },
-      {
-        "src": "assets/projects/yves-rocher/back.jpg",
-        "width": 1010,
-        "height": 1800,
-        "alt": "Face arrière du packaging Yves Rocher"
       }
     ],
     "viewer": {
       "dimensions": [
         1.6,
         2.854,
-        0.86
+        1.6
       ],
       "faces": {
         "front": "assets/projects/yves-rocher/front.jpg",
-        "right": "assets/projects/yves-rocher/right.jpg",
+        "right": "assets/projects/yves-rocher/left.jpg",
         "back": "assets/projects/yves-rocher/back.jpg",
-        "left": "assets/projects/yves-rocher/left.jpg"
+        "left": "assets/projects/yves-rocher/right.jpg"
       },
       "paper": "#faf7eb",
       "foldColor": "#d9cda4"
@@ -208,24 +209,29 @@
     "viewer": {
       "dimensions": [
         3,
-        1.05,
-        1.2
+        0.75,
+        1.05
       ],
       "dimensionsCm": {
         "longueur": 20,
-        "largeur": 8,
-        "hauteur": 7
+        "largeur": 7,
+        "hauteur": 5
       },
       "faces": {
-        "front": "assets/projects/moki/texture-front.jpg",
-        "back": "assets/projects/moki/texture-back.jpg",
-        "top": "assets/projects/moki/texture-top.jpg",
-        "bottom": "assets/projects/moki/texture-bottom.jpg",
-        "left": "assets/projects/moki/texture-end.jpg",
-        "right": "assets/projects/moki/texture-end.jpg"
+        "top": "assets/projects/moki/face-lid.jpg",
+        "bottom": "assets/projects/moki/face-base.jpg",
+        "front": "assets/projects/moki/face-front.jpg",
+        "back": "assets/projects/moki/face-back.jpg",
+        "left": "assets/projects/moki/face-end.jpg",
+        "right": "assets/projects/moki/face-end.jpg"
       },
       "paper": "#ffeeda",
-      "foldColor": "#ffeeda"
+      "foldColor": "#ffeeda",
+      "camera": [
+        3.2,
+        4.5,
+        5.7
+      ]
     }
   },
   {

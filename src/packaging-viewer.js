@@ -20,6 +20,7 @@ async function mount(host){
   let renderer;
   try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'low-power'})}
   catch{status.textContent='La vue 3D n’est pas disponible sur cet appareil.';host.classList.add('viewer-unavailable');return}
+  renderer.setClearColor(0x000000,0);
   renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));
   renderer.outputColorSpace=THREE.SRGBColorSpace;
   renderer.toneMapping=THREE.NeutralToneMapping;
@@ -49,7 +50,7 @@ async function mount(host){
   }
   function requestRender(){if(!frame&&!disposed&&visible&&!document.hidden)frame=requestAnimationFrame(render)}
   controls.addEventListener('change',requestRender);
-  const startPosition=new THREE.Vector3(3.6,2.25,6.2);
+  const startPosition=new THREE.Vector3(...(data.camera||[3.6,2.25,6.2]));
   let interacted=false;
   controls.addEventListener('start',()=>{interacted=true});
   function reset(){

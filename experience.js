@@ -38,7 +38,7 @@
     cards.forEach((card,i)=>{
       const offset=mod(i-phase+cards.length/2,cards.length)-cards.length/2;
       const edge=Math.abs(offset),visible=edge<3.4;
-      card.style.transform=`translate(-50%,-50%) translate3d(${offset*(cardWidth+20)}px,${-edge*edge*10}px,${Math.min(edge*edge*18,250)}px) rotateY(${-offset*13}deg)`;
+      card.style.transform=`translate(-50%,-50%) translate3d(${offset*(cardWidth+20)}px,${-edge*edge*10}px,0) perspective(1000px) rotateY(${-offset*13}deg)`;
       card.style.opacity=visible?String(Math.max(0,Math.min(1,(3.4-edge)*1.6))):'0';
       card.style.pointerEvents=visible?'auto':'none';
       card.style.zIndex=String(Math.round(20-edge));

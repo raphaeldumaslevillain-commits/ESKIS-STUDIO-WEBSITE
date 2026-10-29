@@ -21,18 +21,18 @@
 .folder-plus i{position:absolute;width:17px;height:1.4px;border-radius:2px;background:currentColor;transition:transform .5s var(--ease)}
 .folder-plus i:last-child{transform:rotate(90deg)}
 .folder-files{position:absolute;inset:0;z-index:2;pointer-events:none}
-.folder-file{--file-x:0%;--file-y:0%;--file-angle:0deg;position:absolute;display:block;width:77%;height:40%;top:22%;left:11.5%;border-radius:15px;transform:translate(var(--file-x),var(--file-y)) rotate(var(--file-angle));transform-origin:50% 150%;transition:transform .75s var(--ease),opacity .65s,box-shadow .35s;pointer-events:none}
+.folder-file{--file-x:0%;--file-y:0%;--file-angle:0deg;position:absolute;display:block;width:76%;height:66%;top:20%;left:12%;border-radius:15px;transform:translate(var(--file-x),var(--file-y)) rotate(var(--file-angle));transform-origin:50% 80%;transition:transform .75s var(--ease),opacity .65s,box-shadow .35s;pointer-events:none}
 .folder-file:nth-child(1){--file-x:-8%;--file-y:0%;--file-angle:-6deg;z-index:1}
-.folder-file:nth-child(2){--file-x:0%;--file-y:1%;--file-angle:1deg;z-index:2;transition-delay:35ms}
+.folder-file:nth-child(2){--file-x:8%;--file-y:1%;--file-angle:6deg;z-index:2;transition-delay:35ms}
 .folder-file:nth-child(3){--file-x:8%;--file-y:2%;--file-angle:6deg;z-index:3;transition-delay:70ms}
-.folder-file-paper{position:absolute;inset:0 0 auto;height:170%;overflow:hidden;border-radius:15px;background:#f2efe7;border:1px solid #ffffffb3;box-shadow:0 4px 15px #0002;pointer-events:none;transition:box-shadow .35s}
+.folder-file-paper{position:absolute;inset:0;height:100%;overflow:hidden;border-radius:15px;background:#f2efe7;border:1px solid #ffffffb3;box-shadow:0 4px 15px #0002;pointer-events:none;transition:box-shadow .35s}
 .folder-file img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .folder-file-caption{position:absolute;inset:0 0 auto;min-height:49px;padding:13px 14px;font-size:13px;font-weight:500;letter-spacing:-.035em;line-height:1.2;background:linear-gradient(180deg,#f2efe7fa,#f2efe7ed);color:#171715;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .glass-folder.is-open .folder-toggle,html:not(.js) .folder-toggle{transform:perspective(850px) rotateX(-14deg)}
 .glass-folder.is-open .folder-plus i:last-child{transform:rotate(0deg)}
 .glass-folder.is-open .folder-file,html:not(.js) .folder-file{pointer-events:auto}
-.glass-folder.is-open .folder-file:nth-child(1),html:not(.js) .folder-file:nth-child(1){--file-x:-15%;--file-y:-63%;--file-angle:-12deg}
-.glass-folder.is-open .folder-file:nth-child(2),html:not(.js) .folder-file:nth-child(2){--file-x:0%;--file-y:-83%;--file-angle:-2deg}
+.glass-folder.is-open .folder-file:nth-child(1),html:not(.js) .folder-file:nth-child(1){--file-x:-47%;--file-y:-64%;--file-angle:-7deg}
+.glass-folder.is-open .folder-file:nth-child(2),html:not(.js) .folder-file:nth-child(2){--file-x:47%;--file-y:-64%;--file-angle:7deg}
 .glass-folder.is-open .folder-file:nth-child(3),html:not(.js) .folder-file:nth-child(3){--file-x:15%;--file-y:-60%;--file-angle:9deg}
 .glass-folder.is-open .folder-file:hover,.glass-folder.is-open .folder-file:focus-visible{translate:0 -16px;z-index:6;outline:2px solid #171715;outline-offset:-4px;transition:translate .3s var(--ease),transform .6s var(--ease)}
 .folder-file{translate:0 0;transition:transform .75s var(--ease),opacity .65s,box-shadow .35s,translate .3s}
@@ -85,3 +85,12 @@ body.possibilities-open{overflow:hidden}
 .folder-ready:not(.folder-arrived) .possibility-leaf{opacity:0;transform:translateY(150px) rotate(-12deg)}
 .possibility-leaf{transition:transform .8s var(--ease),opacity .6s}
 :root[data-theme=light] .possibility-folder .folder-front::before{background:radial-gradient(ellipse at var(--shine-x) 0%,#fff,transparent 65%),linear-gradient(145deg,#fff7d7f5,#fffdf2 55%,#ead39df5)}
+
+/* Two real projects per folder: full cards, independent links, balanced spacing. */
+.glass-folder.is-open .folder-files{z-index:5}
+.glass-folder.is-open .folder-file,html:not(.js) .folder-file{width:58%;height:56%;left:21%;top:18%}
+.folder-file{transition:transform .75s var(--ease),width .75s var(--ease),height .75s var(--ease),left .75s var(--ease),top .75s var(--ease),opacity .65s,translate .3s}
+.folder-file-caption{inset:auto 0 0;min-height:44px;padding:17px 12px 12px;background:linear-gradient(0deg,#141414e8,#14141499 70%,transparent);color:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;font-size:12px}
+.glass-folder.is-open .folder-file:hover,.glass-folder.is-open .folder-file:focus-visible{translate:0 -9px;outline:2px solid var(--fg);outline-offset:4px}
+@media(max-width:560px){.glass-folder.is-open .folder-file,html:not(.js) .folder-file{width:56%;left:22%}.folder-file-caption{font-size:11px;padding:15px 10px 10px;min-height:40px}}
+@media(prefers-reduced-motion:reduce){.folder-file{transition:none}.glass-folder.is-open .folder-file:hover{translate:none}}
