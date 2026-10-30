@@ -1,0 +1,22 @@
+/* A small wrong turn, in the ESKIS visual language. */
+.error404{position:relative;isolation:isolate;overflow:hidden;min-height:100svh;padding-top:calc(var(--header-height) + 28px);padding-bottom:48px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.error404::before{content:'';position:absolute;z-index:-1;width:min(60vw,660px);height:min(60vw,660px);top:5%;left:50%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,#925bc51c,transparent 68%);pointer-events:none}
+.error404-eyebrow{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 23px;letter-spacing:.025em}
+.error404-art{display:flex;align-items:center;justify-content:center;font-size:clamp(140px,20vw,245px);font-weight:600;line-height:.88;letter-spacing:-.075em;margin:0 0 25px;user-select:none}
+.error404-art>span{display:block}
+.error404-zero{position:relative;color:#bf94e0;letter-spacing:-.06em;transform:rotate(-7deg)}
+:root[data-theme=light] .error404-zero{color:#7e42a8}
+.error404-face{position:absolute;left:31%;right:24%;top:33%;bottom:19%;transform:translate(var(--eye-x,0px),var(--eye-y,0px));transition:transform .25s ease-out;color:var(--fg)}
+.error404-eyes{position:absolute;left:10%;right:10%;top:16%;display:flex;justify-content:space-between}
+.error404-eyes i{display:block;width:clamp(4px,.55vw,7px);height:clamp(7px,.85vw,11px);border-radius:50%;background:currentColor}
+.error404-smile{position:absolute;width:55%;height:26%;bottom:17%;left:23%;border-bottom:3px solid currentColor;border-radius:0 0 50% 50%;transform:rotate(-4deg)}
+.error404-spark{position:absolute;width:32%;height:auto;top:-10%;right:-8%;transform:rotate(18deg);filter:drop-shadow(0 0 25px #da9ef659);animation:lost-spark 5s ease-in-out infinite}
+@keyframes lost-spark{50%{transform:translate(5px,-7px) rotate(37deg)}}
+.error404 h1{font-size:clamp(30px,3.7vw,51px);line-height:1.04;letter-spacing:-.055em;font-weight:500;margin:0;text-wrap:balance}
+.error404-joke{color:var(--muted);font-size:15px;line-height:1.65;margin:19px 0 0;max-width:38ch;text-wrap:balance}
+.error404-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px 28px;margin-top:30px}
+.error404-actions .metal-button{min-width:215px;min-height:52px;padding:17px 27px;font-size:14px}
+.error404-projects{display:inline-flex;align-items:center;min-height:44px;font-size:14px;border-bottom:1px solid var(--line);transition:border-color .25s,color .25s}
+.error404-projects:hover{border-color:var(--fg);color:var(--fg)}
+@media(max-width:760px){.error404{padding-top:calc(var(--header-height) + 30px);padding-bottom:42px}.error404-eyebrow{margin-bottom:25px;font-size:11px}.error404-art{font-size:clamp(145px,31vw,210px);margin-bottom:30px}.error404 h1{font-size:clamp(29px,6.8vw,42px)}.error404-joke{font-size:14px}.error404-actions{flex-direction:column;gap:12px;margin-top:25px}.error404-actions .metal-button{min-width:225px}.error404::before{width:120vw;height:120vw}}
+@media(prefers-reduced-motion:reduce){.error404-spark{animation:none}.error404-face,.error404-projects{transition:none}}

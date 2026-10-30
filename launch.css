@@ -43,25 +43,36 @@
  .hwf-top{grid-template-columns:1fr 1fr;gap:30px 24px;padding-top:45px}.hwf-brand{grid-column:1/-1}.hwf-brand>a{font-size:40px}.hwf-brand>span{margin-top:16px}.hwf-col a{font-size:14px}.hwf-col .hwf-email{font-size:14px}.hwf-rule{flex-wrap:wrap;gap:5px 18px;font-size:11px}.hwf-rule .hwf-up{margin-left:auto}.hwf-mark{height:38vw;min-height:130px}
 }
 @media(prefers-reduced-motion:reduce){.chromatic-stamp,.project-secondary,.project-secondary img,.hwf-col a,.hwf-brand>a{transition:none}.project-layout .project-secondary:hover{transform:none}.project-layout .project-secondary:hover img{transform:none}}
-/* Direct page access and an icon-only burger in the shared header. */
-.immersive-header.site-header{position:fixed;align-items:center;min-height:102px}
-.immersive-header .header-pages{pointer-events:auto;display:flex;align-items:center;gap:3px;position:absolute;left:50%;top:25px;transform:translateX(-50%);padding:5px;border-radius:50px;white-space:nowrap;z-index:112}
-.header-pages>.glass-surface{background:color-mix(in srgb,var(--bg) 83%,transparent)}
-.header-pages>a{position:relative;z-index:1;display:flex;align-items:center;min-height:42px;padding:0 18px;font-size:12px;border-radius:50px;transition:background .3s,color .3s}
-.header-pages>a:hover,.header-pages>a[aria-current=page]{background:var(--glass)}
-.header-pages>a:last-child{background:var(--fg);color:var(--bg);margin-left:3px}
-.immersive-header .menu-toggle{width:50px;height:50px;min-height:50px;padding:0;justify-content:center;display:flex}
-.immersive-header .menu-symbol{position:relative;display:block;width:20px;height:20px}
-.immersive-header .menu-toggle .menu-symbol i{position:absolute;width:20px;left:0;right:auto;top:4px;height:1px;transform:none;opacity:1;transition:transform .4s,top .4s,opacity .25s}
+/* A permanent, opaque header with plain text links. */
+:root{--header-height:88px;--header-bg:#29292c;--header-ink:#f2efe7;--header-control-bg:#3b3b40}
+:root[data-theme=light]{--header-bg:#eee7dc;--header-ink:#171715;--header-control-bg:#f8f2e9}
+.immersive-header.site-header{position:fixed;inset:0 0 auto;display:grid;grid-template-columns:120px 1fr 120px;align-items:center;gap:24px;height:var(--header-height);min-height:0;padding:18px var(--gutter);color:var(--header-ink);background:var(--header-bg);border-bottom:1px solid color-mix(in srgb,var(--header-ink) 12%,transparent)}
+.immersive-header.site-header::before{content:'';position:absolute;inset:0;z-index:111;background:var(--header-bg);pointer-events:none}
+.immersive-header .brand{width:105px;transform:none;transition:transform .35s var(--ease)}.immersive-header .brand:hover{transform:rotate(-4deg)}
+.immersive-header .header-pages{pointer-events:auto;position:relative;z-index:112;display:flex;align-items:center;justify-content:center;gap:clamp(18px,2.2vw,34px);left:auto;top:auto;transform:none;padding:0;margin:0;border:0;border-radius:0;background:none;box-shadow:none;white-space:nowrap}
+.header-pages>a{display:inline-flex;align-items:center;position:relative;min-height:44px;padding:0;font-size:13px;line-height:1.4;background:none;color:inherit;transition:color .2s}
+.header-pages>a::after{content:'';position:absolute;left:0;right:0;bottom:7px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.header-pages>a:hover::after,.header-pages>a[aria-current=page]::after{transform:scaleX(1)}
+.immersive-header .header-tools{position:relative;justify-self:end;top:auto;right:auto;z-index:113;gap:10px}
+.immersive-header :is(.theme-toggle,.menu-toggle){display:flex;align-items:center;justify-content:center;width:46px;height:46px;min-height:46px;padding:0;border:0;border-radius:50%;background:none;box-shadow:none;color:inherit;transform:none;transition:transform .4s var(--ease),opacity .2s}
+.immersive-header .header-tools .glass-surface{background:var(--header-control-bg);border-color:color-mix(in srgb,var(--header-ink) 20%,transparent)}
+.immersive-header .menu-toggle:hover{transform:rotate(-5deg)}
+.immersive-header .theme-toggle:hover{transform:rotate(12deg)}
+.immersive-header .theme-toggle svg{width:20px;height:20px}
+.immersive-header :is(a,button):focus-visible{outline:2px solid #cda4ed;outline-offset:4px}
+:root[data-theme=light] .immersive-header :is(a,button):focus-visible{outline-color:#713792}
+.immersive-header .menu-symbol{position:relative;display:block;width:22px;height:20px}
+.immersive-header .menu-toggle .menu-symbol i{position:absolute;width:22px;left:0;right:auto;top:3px;height:1px;transform:none;opacity:1;transition:transform .4s,top .4s,opacity .25s}
 .immersive-header .menu-toggle .menu-symbol i:nth-child(2){top:9px}
-.immersive-header .menu-toggle .menu-symbol i:last-child{top:14px}
+.immersive-header .menu-toggle .menu-symbol i:last-child{top:15px}
 .immersive-header .menu-toggle[aria-expanded=true] .menu-symbol i:first-child{top:9px;transform:rotate(45deg)}
 .immersive-header .menu-toggle[aria-expanded=true] .menu-symbol i:nth-child(2){opacity:0;transform:scaleX(0)}
 .immersive-header .menu-toggle[aria-expanded=true] .menu-symbol i:last-child{top:9px;transform:rotate(-45deg)}
-@media(max-width:1050px){.immersive-header .header-pages{display:none}}
-@media(max-width:760px){.immersive-header.site-header{min-height:84px}.immersive-header .menu-toggle{width:46px;height:46px;min-height:46px}.immersive-header .header-tools{gap:9px}}
-html:not(.js) .immersive-nav{display:none}html:not(.js) .header-pages{display:flex;position:static;transform:none;flex-wrap:wrap;white-space:normal}html:not(.js) .site-header{position:relative;flex-wrap:wrap}
-@media(prefers-reduced-motion:reduce){.header-pages>a,.immersive-header .menu-toggle .menu-symbol i{transition:none}}
+html{scroll-padding-top:calc(var(--header-height) + 16px)}
+@media(max-width:1050px){.immersive-header.site-header{grid-template-columns:1fr auto}.immersive-header .header-pages{display:none}}
+@media(max-width:760px){:root{--header-height:76px}.immersive-header.site-header{padding:14px var(--gutter);gap:16px}.immersive-header .brand,.immersive-header .brand img{width:94px}.immersive-header .header-tools{gap:8px}.immersive-header :is(.theme-toggle,.menu-toggle){width:44px;height:44px;min-height:44px}}
+html:not(.js) .immersive-nav{display:none}html:not(.js) .immersive-header.site-header{height:auto;display:flex;flex-wrap:wrap;position:relative}html:not(.js) .header-pages{display:flex;flex-wrap:wrap;white-space:normal;order:2;width:100%;gap:5px 22px}
+@media(prefers-reduced-motion:reduce){.header-pages>a,.header-pages>a::after,.immersive-header :is(.brand,.theme-toggle,.menu-toggle),.immersive-header .menu-toggle .menu-symbol i{transition:none}.immersive-header :is(.brand,.theme-toggle,.menu-toggle):hover{transform:none}}
 /* Pelote keeps its seven original slides as one continuous presentation. */
 .real-project-gallery.project-layout.pelote-continuous{display:block;gap:0;margin:0 var(--gutter) 75px;overflow:hidden;border-radius:18px}
 .pelote-continuous figure.pelote-slide{width:100%;aspect-ratio:16/9;border-radius:0;background:transparent;overflow:hidden;margin:0;transform:none;box-shadow:none}

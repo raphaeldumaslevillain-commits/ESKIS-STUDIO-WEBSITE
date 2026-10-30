@@ -3,7 +3,7 @@
 Portfolio statique en HTML, CSS et JavaScript : 16 pages, 8 projets issus des fichiers fournis. Ressources, polices et bibliothèques hébergées localement. Domaine préparé : https://studio-eskis.fr/.
 
 ## État de livraison
-Version 5.0.0, préparation du 30 octobre 2026. Le code est prêt à être servi par un hébergement statique. La mise en service officielle dépend encore du domaine/HTTPS, de l’activation et d’un test concluant du formulaire, et des informations légales réelles. Consulter PUBLICATION.md pour les réglages et les vérifications restantes.
+Version 5.1.0, préparation du 30 octobre 2026. Le code est prêt à être servi par un hébergement statique. La mise en service officielle dépend encore du domaine/HTTPS, de l’activation et d’un test concluant du formulaire, et des informations légales réelles. Consulter PUBLICATION.md pour les réglages et les vérifications restantes.
 
 ## Navigation et expérience
 Logo ESKIS, liens directs des pages sur ordinateur, changement de thème et bouton burger. Menu plein écran sur mobile. Le retour d’un projet conserve sa page d’origine, le dossier ouvert et la position de défilement. Un parcours entre plusieurs projets conserve ce point de retour. La préférence de thème et ce contexte temporaire restent dans le navigateur.
@@ -30,3 +30,6 @@ Servir ce dossier par HTTP, par exemple `python3 -m http.server 4381 --bind 127.
 
 ## Sources et licences
 Références 21st.dev, licences et attributions dans 21ST-CREDITS.md. Logo fourni par son propriétaire. DM Sans sous SIL Open Font License. Aucun outil publicitaire ou de mesure d’audience ajouté.
+
+## Navigation et page 404 · V16
+Header fixe et opaque sur toutes les pages, gris en thème sombre et crème en thème clair. Liens de navigation en texte simple, sans pastille ni bouton de contact dans la barre. Logo, thème et burger restent visibles au défilement. Les commandes thème et burger conservent leur surface givrée arrondie et leur légère inclinaison au survol ; le logo retrouve aussi son inclinaison. Page 404 personnalisée, avec retour à l’accueil et aux projets, touches colorées et animation discrète respectant la réduction des mouvements. Les ressources et liens de secours restent valides sur une URL inexistante imbriquée.
