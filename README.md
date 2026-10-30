@@ -33,3 +33,6 @@ Références 21st.dev, licences et attributions dans 21ST-CREDITS.md. Logo fourn
 
 ## Navigation et page 404 · V16
 Header fixe et opaque sur toutes les pages, gris en thème sombre et crème en thème clair. Liens de navigation en texte simple, sans pastille ni bouton de contact dans la barre. Logo, thème et burger restent visibles au défilement. Les commandes thème et burger conservent leur surface givrée arrondie et leur légère inclinaison au survol ; le logo retrouve aussi son inclinaison. Page 404 personnalisée, avec retour à l’accueil et aux projets, touches colorées et animation discrète respectant la réduction des mouvements. Les ressources et liens de secours restent valides sur une URL inexistante imbriquée.
+
+## Publication OVHcloud
+L’hébergement Starter est actif. Le dépôt peut être déployé directement par la fonction Git OVHcloud (dépôt public HTTPS, branche main). Le fichier .htaccess définit index.html comme accueil et la réponse 404 personnalisée. La redirection HTTPS sera activée après validation du certificat. Le contact et les informations légales de l’éditeur restent à finaliser.
